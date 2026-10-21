@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regulatory Scrutiny & Document Authentication | SIH 2026</title>
+    <meta name="description" content="AI-Powered Application Validation, Document Authentication and Regulatory Compliance Verification Platform for Higher Education Regulatory Authorities">
+    
+    <!-- Google Fonts: Inter & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-theme">
+    <!-- Header / Navbar -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="brand">
+                <div class="brand-logo">
+                    <span class="logo-icon">⚖️</span>
+                </div>
+                <div class="brand-info">
+                    <h1 class="brand-title">ReguValidate <span class="badge-sih">SIH 2026</span></h1>
+                    <span class="brand-sub">AI Regulatory Scrutiny & Document Authentication</span>
+                </div>
+            </div>
+
+            <!-- Global Nav Tabs -->
+            <nav class="nav-links" id="main-nav">
+                <button class="nav-btn active" data-view="dashboard" id="nav-dashboard">
+                    <span class="nav-icon">📊</span> Dashboard
+                </button>
+                <button class="nav-btn" data-view="applications" id="nav-applications">
+                    <span class="nav-icon">📑</span> Applications
+                </button>
+                <button class="nav-btn" data-view="rules" id="nav-rules">
+                    <span class="nav-icon">📜</span> Compliance Rules
+                </button>
+                <button class="nav-btn" data-view="audit" id="nav-audit">
+                    <span class="nav-icon">🛡️</span> Audit Trail
+                </button>
+            </nav>
+
+            <!-- User Auth Profile & Theme Switcher -->
+            <div class="header-actions">
+                <button class="theme-toggle-btn" id="theme-toggle" title="Toggle Light/Dark Theme">
+                    <span id="theme-icon">☀️</span>
+                </button>
+                
+                <div class="user-profile-badge" id="user-badge">
+                    <div class="user-avatar" id="user-avatar-initials">DS</div>
+                    <div class="user-meta">
+                        <span class="user-name" id="user-name-display">Dr. Ananya Sharma</span>
+                        <span class="user-role-tag" id="user-role-display">Reviewer</span>
+                    </div>
+                    <button class="logout-btn" id="btn-logout" title="Log Out">⎋</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main App Container -->
+    <main class="main-content">
+        <!-- Toast Notification Area -->
+        <div id="toast-container" class="toast-container"></div>
+
+        <!-- ================= VIEW 1: DASHBOARD ================= -->
+        <section id="view-dashboard" class="app-view active">
+            <div class="view-header">
+                <div>
+                    <h2 class="view-title">Scrutiny Intelligence Dashboard</h2>
+                    <p class="view-subtitle">Live regulatory verification metrics, active deficiency alerts, and processing queues</p>
+                </div>
+                <div class="view-actions">
+                    <button class="btn btn-outline" id="btn-refresh-dashboard">🔄 Refresh</button>
+                    <button class="btn btn-primary" id="btn-quick-new-app">+ New Application</button>
+                </div>
+            </div>
+
+            <!-- KPI Metric Cards Grid -->
+            <div class="kpi-grid">
+                <div class="kpi-card" id="kpi-total-apps">
+                    <div class="kpi-header">
+                        <span class="kpi-title">Total Applications</span>
+                        <span class="kpi-icon">📁</span>
+                    </div>
+                    <div class="kpi-value" id="stat-total-apps">0</div>
+                    <span class="kpi-trend neutral">Active institutional dossiers</span>
+                </div>
+
+                <div class="kpi-card highlight-warning" id="kpi-in-scrutiny">
+                    <div class="kpi-header">
+                        <span class="kpi-title">Awaiting Scrutiny</span>
+                        <span class="kpi-icon">⏳</span>
+                    </div>
+                    <div class="kpi-value" id="stat-pending-scrutiny">0</div>
+                    <span class="kpi-trend warning">Submitted for verification</span>
+                </div>
+
+                <div class="kpi-card highlight-danger" id="kpi-critical-findings">
+                    <div class="kpi-header">
+                        <span class="kpi-title">Critical Findings</span>
+                        <span class="kpi-icon">⚠️</span>
+                    </div>
+                    <div class="kpi-value" id="stat-critical-findings">0</div>
+                    <span class="kpi-trend danger">Deficiencies requiring notice</span>
+                </div>
+
+                <div class="kpi-card highlight-success" id="kpi-approved-apps">
+                    <div class="kpi-header">
+                        <span class="kpi-title">Approved Approvals</span>
+                        <span class="kpi-icon">✅</span>
+                    </div>
+                    <div class="kpi-value" id="stat-approved-apps">0</div>
+                    <span class="kpi-trend success">Completed cycle</span>
+                </div>
+            </div>
+
+            <!-- Dashboard Analytics Two-Column -->
+            <div class="dashboard-grid">
+                <!-- Severity Breakdown -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3 class="panel-title">Findings by Severity</h3>
+                        <span class="tag tag-sm tag-info">Validation Engine</span>
+                    </div>
+                    <div class="severity-bars" id="severity-distribution">
+                        <div class="sev-row">
+                            <span class="sev-label"><span class="dot dot-danger"></span> Critical</span>
+                            <div class="progress-bar-bg"><div class="progress-bar-fill fill-danger" id="bar-crit" style="width: 0%"></div></div>
+                            <span class="sev-count" id="count-crit">0</span>
+                        </div>
+                        <div class="sev-row">
+                            <span class="sev-label"><span class="dot dot-warning"></span> Major</span>
+                            <div class="progress-bar-bg"><div class="progress-bar-fill fill-warning" id="bar-maj" style="width: 0%"></div></div>
+                            <span class="sev-count" id="count-maj">0</span>
+                        </div>
+                        <div class="sev-row">
+                            <span class="sev-label"><span class="dot dot-info"></span> Minor</span>
+                            <div class="progress-bar-bg"><div class="progress-bar-fill fill-info" id="bar-min" style="width: 0%"></div></div>
+                            <span class="sev-count" id="count-min">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity Feed -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3 class="panel-title">System Audit Activity</h3>
+                        <button class="btn btn-xs btn-outline" id="btn-view-all-audit">View Log</button>
+                    </div>
+                    <div class="activity-feed" id="dashboard-recent-activity">
+                        <div class="loading-spinner">Loading activity stream...</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= VIEW 2: APPLICATIONS LIST ================= -->
+        <section id="view-applications" class="app-view">
+            <div class="view-header">
+                <div>
+                    <h2 class="view-title">Institutional Applications</h2>
+                    <p class="view-subtitle">Search, filter, and scrutinize regulatory approval dossiers</p>
+                </div>
+                <div class="view-actions">
+                    <button class="btn btn-primary" id="btn-open-create-app-modal">+ New Application</button>
+                </div>
+            </div>
+
+            <!-- Filters Bar -->
+            <div class="filter-bar">
+                <div class="search-input-wrap">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="app-search-input" placeholder="Search by Institution, PID, Application #..." class="search-input">
+                </div>
+                
+                <div class="filter-group">
+                    <select id="filter-app-category" class="select-input">
+                        <option value="">All Categories</option>
+                        <option value="EXTENSION_OF_APPROVAL">Extension of Approval (EoA)</option>
+                        <option value="NEW_INSTITUTION">New Institution Setup</option>
+                        <option value="INCREASE_INTAKE">Increase in Intake</option>
+                        <option value="NEW_COURSE">New Course Addition</option>
+                        <option value="CLOSURE">Closure of Program</option>
+                    </select>
+
+                    <select id="filter-app-status" class="select-input">
+                        <option value="">All Statuses</option>
+                        <option value="DRAFT">Draft</option>
+                        <option value="SUBMITTED">Submitted</option>
+                        <option value="IN_SCRUTINY">In Scrutiny</option>
+                        <option value="DEFICIENCY_ISSUED">Deficiency Issued</option>
+                        <option value="APPROVED">Approved</option>
+                        <option value="REJECTED">Rejected</option>
+                    </select>
+
+                    <button class="btn btn-outline" id="btn-apply-filters">Filter</button>
+                    <button class="btn btn-outline" id="btn-reset-filters">Reset</button>
+                </div>
+            </div>
+
+            <!-- Applications Table -->
+            <div class="table-container">
+                <table class="data-table" id="applications-table">
+                    <thead>
+                        <tr>
+                            <th>Application #</th>
+                            <th>Institution Name</th>
+                            <th>Permanent ID (PID)</th>
+                            <th>Category</th>
+                            <th>Academic Year</th>
+                            <th>Status</th>
+                            <th>Submitted Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="applications-tbody">
+                        <tr><td colspan="8" class="text-center">Loading applications...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ================= VIEW 3: SCRUTINY WORKSPACE (APPLICATION DETAIL) ================= -->
+        <section id="view-scrutiny" class="app-view">
+            <!-- Back to Applications Bar -->
+            <div class="scrutiny-top-bar">
+                <button class="btn btn-outline btn-sm" id="btn-back-to-apps">← Back to Applications</button>
+                <div class="export-actions">
+                    <span class="export-label">Download Dossier:</span>
+                    <button class="btn btn-sm btn-outline" id="btn-export-html">📄 HTML Report</button>
+                    <button class="btn btn-sm btn-outline" id="btn-export-json">💾 JSON</button>
+                    <button class="btn btn-sm btn-outline" id="btn-export-csv">📊 CSV</button>
+                </div>
+            </div>
+
+            <!-- Application Banner Card -->
+            <div class="app-detail-banner" id="app-detail-banner">
+                <div class="banner-main">
+                    <div class="banner-header-row">
+                        <h2 class="app-inst-title" id="detail-inst-name">APEX INSTITUTE OF TECHNOLOGY</h2>
+                        <span class="status-pill status-in_scrutiny" id="detail-app-status">IN_SCRUTINY</span>
+                    </div>
+                    <div class="banner-meta-grid">
+                        <div class="meta-cell">
+                            <span class="meta-label">Application Number</span>
+                            <span class="meta-val" id="detail-app-num">APP-2026-0001</span>
+                        </div>
+                        <div class="meta-cell">
+                            <span class="meta-label">Permanent Institute ID (PID)</span>
+                            <span class="meta-val" id="detail-inst-code">AICTE-1-10928374</span>
+                        </div>
+                        <div class="meta-cell">
+                            <span class="meta-label">Approval Category</span>
+                            <span class="meta-val" id="detail-app-category">EXTENSION_OF_APPROVAL</span>
+                        </div>
+                        <div class="meta-cell">
+                            <span class="meta-label">Academic Cycle</span>
+                            <span class="meta-val" id="detail-app-year">2026-2027</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reviewer Status Action Box -->
+                <div class="reviewer-status-box">
+                    <span class="box-title">Scrutiny Verdict Decision</span>
+                    <select id="select-status-transition" class="select-input select-status">
+                        <option value="IN_SCRUTINY">In Scrutiny</option>
+                        <option value="DEFICIENCY_ISSUED">Deficiency Notice</option>
+                        <option value="APPROVED">Grant Approval</option>
+                        <option value="REJECTED">Reject Application</option>
+                    </select>
+                    <button class="btn btn-sm btn-primary btn-block" id="btn-update-app-status">Update Status</button>
+                </div>
+            </div>
+
+            <!-- Scrutiny Workspace Tabs -->
+            <div class="tab-nav">
+                <button class="tab-btn active" data-tab="tab-findings" id="tab-btn-findings">
+                    Validation Findings & Discrepancies <span class="badge-count" id="badge-findings-count">0</span>
+                </button>
+                <button class="tab-btn" data-tab="tab-documents" id="tab-btn-documents">
+                    Document Dossier & Evidence <span class="badge-count" id="badge-docs-count">0</span>
+                </button>
+                <button class="tab-btn" data-tab="tab-verifications" id="tab-btn-verifications">
+                    Registry Verification (Adapters)
+                </button>
+            </div>
+
+            <!-- TAB 1: VALIDATION FINDINGS -->
+            <div class="tab-content active" id="tab-findings">
+                <div class="validation-action-banner">
+                    <div>
+                        <h3 class="banner-title">Deterministic Compliance Engine</h3>
+                        <p class="banner-desc">Evaluates mandatory document completeness, expired statutory clearances, cross-document discrepancies, and tampering heuristics.</p>
+                    </div>
+                    <button class="btn btn-primary btn-glow" id="btn-trigger-validation">
+                        ⚡ Run Validation Engine
+                    </button>
+                </div>
+
+                <!-- Findings Container -->
+                <div id="findings-list-container" class="findings-container">
+                    <div class="loading-spinner">Loading validation findings...</div>
+                </div>
+            </div>
+
+            <!-- TAB 2: DOCUMENT DOSSIER -->
+            <div class="tab-content" id="tab-documents">
+                <!-- Document Upload Section -->
+                <div class="upload-dossier-card">
+                    <h3 class="card-title">Upload Statutory Regulatory Document</h3>
+                    <form id="form-upload-doc" class="upload-form">
+                        <div class="form-row">
+                            <div class="form-group flex-1">
+                                <label for="upload-doc-type">Document Requirement Type</label>
+                                <select id="upload-doc-type" class="select-input" required>
+                                    <option value="FIRE_SAFETY_NOC">Fire Safety & Emergency NOC</option>
+                                    <option value="BUILDING_COMPLETION_CERT">Building Completion & Occupancy Certificate</option>
+                                    <option value="PREVIOUS_APPROVAL_LETTER">AICTE Previous Approval Letter (EoA)</option>
+                                    <option value="LAND_TITLE_DEED">Land Title Deed / Registered Lease</option>
+                                    <option value="LAND_USE_CERTIFICATE">Land Use Certificate (LUC / CLU)</option>
+                                    <option value="AFFILIATING_UNIVERSITY_NOC">Affiliating University NOC</option>
+                                    <option value="FINANCIAL_AUDIT_REPORT">Audited Financial Statements</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group flex-2">
+                                <label for="upload-file-input">Select Document (PDF, Scanned PDF, PNG, JPG, TXT)</label>
+                                <input type="file" id="upload-file-input" class="file-input" accept=".pdf,.png,.jpg,.jpeg,.txt" required>
+                            </div>
+
+                            <div class="form-group flex-auto">
+                                <label>&nbsp;</label>
+                                <button type="submit" class="btn btn-primary" id="btn-submit-upload">Upload & Ingest</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Document Table -->
+                <div class="table-container">
+                    <table class="data-table" id="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Document Requirement</th>
+                                <th>Filename</th>
+                                <th>SHA-256 Hash</th>
+                                <th>Mode</th>
+                                <th>Pages</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="docs-tbody">
+                            <tr><td colspan="7" class="text-center">No documents uploaded yet.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TAB 3: REGISTRY VERIFICATION -->
+            <div class="tab-content" id="tab-verifications">
+                <div class="verification-disclaimer">
+                    <span class="info-icon">ℹ️</span>
+                    <div>
+                        <strong>Transparency Notice (SIH 2026):</strong>
+                        This adapter layer connects to simulated external statutory registries (e.g. AICTE Approval Portal, State Fire NOC Registry). All outcomes are explicitly badged as simulated. Real deployments connect to authenticated government gateways.
+                    </div>
+                </div>
+
+                <div class="verification-cards-grid" id="verification-results-container">
+                    <div class="loading-spinner">Loading verification history...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= VIEW 4: COMPLIANCE RULES ================= -->
+        <section id="view-rules" class="app-view">
+            <div class="view-header">
+                <div>
+                    <h2 class="view-title">Configurable Compliance Rules Registry</h2>
+                    <p class="view-subtitle">Enable, disable, and configure regulatory validation rules across approval categories</p>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table class="data-table" id="rules-table">
+                    <thead>
+                        <tr>
+                            <th>Rule Code</th>
+                            <th>Version</th>
+                            <th>Title & Description</th>
+                            <th>Category</th>
+                            <th>Severity</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rules-tbody">
+                        <tr><td colspan="7" class="text-center">Loading rules...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ================= VIEW 5: AUDIT TRAIL ================= -->
+        <section id="view-audit" class="app-view">
+            <div class="view-header">
+                <div>
+                    <h2 class="view-title">Immutable Audit Trail Explorer</h2>
+                    <p class="view-subtitle">Complete chronological record of all document uploads, validation runs, and reviewer actions</p>
+                </div>
+                <div class="view-actions">
+                    <button class="btn btn-outline" id="btn-refresh-audit">🔄 Refresh</button>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table class="data-table" id="audit-table">
+                    <thead>
+                        <tr>
+                            <th>Timestamp (UTC)</th>
+                            <th>Action</th>
+                            <th>User</th>
+                            <th>Resource Type</th>
+                            <th>Resource ID</th>
+                            <th>IP Address</th>
+                            <th>Audit Details</th>
+                        </tr>
+                    </thead>
+                    <tbody id="audit-tbody">
+                        <tr><td colspan="7" class="text-center">Loading audit events...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- ================= MODALS ================= -->
+
+    <!-- Modal: New Application -->
+    <div class="modal-backdrop" id="modal-new-app">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">Create New Regulatory Application</h3>
+                <button class="modal-close" id="btn-close-new-app-modal">&times;</button>
+            </div>
+            <form id="form-create-app" class="modal-body">
+                <div class="form-group">
+                    <label for="new-app-inst">Select Institution *</label>
+                    <select id="new-app-inst" class="select-input" required>
+                        <option value="">Loading institutions...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="new-app-category">Approval Category *</label>
+                    <select id="new-app-category" class="select-input" required>
+                        <option value="EXTENSION_OF_APPROVAL">Extension of Approval (EoA)</option>
+                        <option value="NEW_INSTITUTION">New Institution Setup</option>
+                        <option value="INCREASE_INTAKE">Increase in Intake</option>
+                        <option value="NEW_COURSE">New Course Addition</option>
+                        <option value="CLOSURE">Closure of Program</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="new-app-year">Academic Year *</label>
+                    <input type="text" id="new-app-year" class="text-input" value="2026-2027" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" id="btn-cancel-new-app">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="btn-submit-create-app">Create Application</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Document Extraction Inspector & Field Override -->
+    <div class="modal-backdrop" id="modal-extraction-inspector">
+        <div class="modal-box modal-lg">
+            <div class="modal-header">
+                <div>
+                    <h3 class="modal-title" id="inspector-doc-title">Document Extraction Inspector</h3>
+                    <span class="modal-subtitle" id="inspector-doc-meta">MIME: application/pdf | SHA-256: ...</span>
+                </div>
+                <button class="modal-close" id="btn-close-inspector">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="inspector-grid">
+                    <!-- Left: Extracted Structured Fields -->
+                    <div class="inspector-fields-col">
+                        <div class="fields-header">
+                            <h4>Extracted Structured Entities</h4>
+                            <span class="tag tag-sm tag-info">AI & Pattern Parser</span>
+                        </div>
+                        <div id="inspector-fields-list" class="fields-list">
+                            <div class="loading-spinner">Loading fields...</div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Field Override Tool -->
+                    <div class="inspector-override-col">
+                        <h4>Reviewer Manual Correction</h4>
+                        <p class="override-desc">If OCR or entity extraction misread a field, authorized reviewers can correct it directly.</p>
+                        
+                        <form id="form-field-override">
+                            <div class="form-group">
+                                <label for="override-field-name">Target Field</label>
+                                <select id="override-field-name" class="select-input" required>
+                                    <option value="institution_name">institution_name</option>
+                                    <option value="institution_id">institution_id (PID)</option>
+                                    <option value="certificate_number">certificate_number</option>
+                                    <option value="issue_date">issue_date (YYYY-MM-DD)</option>
+                                    <option value="expiry_date">expiry_date (YYYY-MM-DD)</option>
+                                    <option value="issuing_authority">issuing_authority</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="override-field-val">Corrected Value *</label>
+                                <input type="text" id="override-field-val" class="text-input" placeholder="e.g. 2027-03-31 or APEX INSTITUTE" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="override-notes">Reviewer Reason / Rationale</label>
+                                <textarea id="override-notes" class="textarea-input" placeholder="Justification for override..." rows="2"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Save Field Correction</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Finding Review Action -->
+    <div class="modal-backdrop" id="modal-finding-review">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">Review Regulatory Finding</h3>
+                <button class="modal-close" id="btn-close-review-modal">&times;</button>
+            </div>
+            <form id="form-review-finding" class="modal-body">
+                <input type="hidden" id="review-finding-id">
+                <div class="finding-preview-box">
+                    <strong id="review-finding-title">Finding Title</strong>
+                    <p id="review-finding-explanation" class="text-sm">Explanation text...</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="review-status-select">Review Verdict *</label>
+                    <select id="review-status-select" class="select-input" required>
+                        <option value="CONFIRMED">CONFIRMED — Verified Genuine Defect</option>
+                        <option value="DISMISSED">DISMISSED — False Alarm / Acceptable Variation</option>
+                        <option value="RESOLVED">RESOLVED — Satisfactory Evidence Provided</option>
+                        <option value="NEEDS_ADDITIONAL_EVIDENCE">NEEDS ADDITIONAL EVIDENCE</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="review-notes-input">Reviewer Notes & Regulatory Reason *</label>
+                    <textarea id="review-notes-input" class="textarea-input" rows="3" placeholder="Provide clear justification for this determination..." required></textarea>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" id="btn-cancel-review">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Submit Review Determination</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Login Role Switcher -->
+    <div class="modal-backdrop" id="modal-login">
+        <div class="modal-box">
+            <div class="modal-header">
+                <div>
+                    <h3 class="modal-title">Sign In to ReguValidate</h3>
+                    <p class="modal-subtitle">Authorized Scrutiny & Regulatory Access</p>
+                </div>
+                <button class="modal-close" id="btn-close-login">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="role-selector-pills">
+                    <button type="button" class="role-pill" data-user="reviewer" data-pass="Reviewer@123">
+                        <strong>Reviewer</strong>
+                        <small>Dr. Ananya Sharma</small>
+                    </button>
+                    <button type="button" class="role-pill" data-user="admin" data-pass="Admin@123">
+                        <strong>Administrator</strong>
+                        <small>Rules & System Admin</small>
+                    </button>
+                    <button type="button" class="role-pill" data-user="institution" data-pass="Inst@123">
+                        <strong>Institution</strong>
+                        <small>Apex Tech Nodal Officer</small>
+                    </button>
+                </div>
+
+                <form id="form-login">
+                    <div class="form-group">
+                        <label for="login-username">Username</label>
+                        <input type="text" id="login-username" class="text-input" value="reviewer" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" class="text-input" value="Reviewer@123" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block" id="btn-submit-login">Sign In</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Logic Script -->
+    <script src="app.js"></script>
+</body>
+</html>
