@@ -3,323 +3,829 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Regulatory Scrutiny & Document Authentication | SIH 2026</title>
-    <meta name="description" content="AI-Powered Application Validation, Document Authentication and Regulatory Compliance Verification Platform for Higher Education Regulatory Authorities">
+    <title>AICTE Regulatory Scrutiny & Compliance Verification Platform</title>
+    <meta name="description" content="AICTE Regulatory Application Validation, Document Authentication and Compliance Verification Platform — Government of India">
     
-    <!-- Google Fonts: Inter & Outfit -->
+    <!-- Google Fonts: Inter, Source Serif 4 & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="dark-theme">
-    <!-- Header / Navbar -->
-    <header class="app-header">
-        <div class="header-container">
-            <div class="brand">
-                <div class="brand-logo">
-                    <span class="logo-icon">⚖️</span>
+<body>
+    <!-- ==========================================================================
+       A. HORIZONTAL GOVERNMENT HEADER (Approx. 100-104px tall)
+       ========================================================================== -->
+    <header class="gov-header" id="main-header">
+        <div class="header-inner">
+            <!-- Left Identity Area (~360px): Authentic AICTE Emblem & Titles -->
+            <a href="#" class="gov-identity" id="header-brand-logo">
+                <div class="aicte-emblem-wrap">
+                    <!-- Authentic Vector Emblem for AICTE / Govt of India -->
+                    <svg class="aicte-emblem-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Outer Decorative Gear / Sunburst Ring -->
+                        <circle cx="50" cy="50" r="46" stroke="#042F30" stroke-width="2.5" stroke-dasharray="3 2"/>
+                        <circle cx="50" cy="50" r="41" fill="#F4FCFC" stroke="#0F6B6F" stroke-width="1.5"/>
+                        <!-- Ashoka Chakra Spokes in Center Base -->
+                        <circle cx="50" cy="50" r="32" stroke="#86D0CF" stroke-width="1"/>
+                        <!-- Technical Gear Motif -->
+                        <path d="M50 18 L53 25 L60 22 L61 30 L69 29 L67 37 L75 39 L71 46 L78 50 L71 54 L75 61 L67 63 L69 71 L61 70 L60 78 L53 75 L50 82 L47 75 L40 78 L39 70 L31 71 L33 63 L25 61 L29 54 L22 50 L29 46 L25 39 L33 37 L31 29 L39 30 L40 22 L47 25 Z" fill="#042F30" opacity="0.12"/>
+                        <!-- Center Deepak / Flame of Wisdom & Technical Progress -->
+                        <path d="M50 28 C45 35 44 42 47 46 C49 49 53 48 54 44 C56 40 54 34 50 28 Z" fill="#0FAEC1"/>
+                        <path d="M48 34 C46 38 46 41 48 43 C49 44 51 44 52 42 C53 40 51 37 48 34 Z" fill="#86D0CF"/>
+                        <!-- Supporting Lamp Base / Lotus Petals -->
+                        <path d="M36 54 C42 60 58 60 64 54 C61 63 39 63 36 54 Z" fill="#0F6B6F"/>
+                        <path d="M32 60 C40 68 60 68 68 60 C64 69 36 69 32 60 Z" fill="#042F30"/>
+                        <!-- Base Stand / Foundation -->
+                        <rect x="38" y="70" width="24" height="4" rx="2" fill="#0F6B6F"/>
+                        <rect x="32" y="75" width="36" height="3" rx="1.5" fill="#042F30"/>
+                    </svg>
                 </div>
-                <div class="brand-info">
-                    <h1 class="brand-title">ReguValidate <span class="badge-sih">SIH 2026</span></h1>
-                    <span class="brand-sub">AI Regulatory Scrutiny & Document Authentication</span>
+                <div class="gov-titles">
+                    <span class="gov-title-main">AICTE</span>
+                    <span class="gov-title-sub">Ministry of Education, Govt. of India</span>
+                    <span class="gov-title-portal">Regulatory Scrutiny & Compliance Portal</span>
                 </div>
-            </div>
+            </a>
 
-            <!-- Global Nav Tabs -->
-            <nav class="nav-links" id="main-nav">
-                <button class="nav-btn active" data-view="dashboard" id="nav-dashboard">
-                    <span class="nav-icon">📊</span> Dashboard
-                </button>
-                <button class="nav-btn" data-view="applications" id="nav-applications">
-                    <span class="nav-icon">📑</span> Applications
-                </button>
-                <button class="nav-btn" data-view="rules" id="nav-rules">
-                    <span class="nav-icon">📜</span> Compliance Rules
-                </button>
-                <button class="nav-btn" data-view="audit" id="nav-audit">
-                    <span class="nav-icon">🛡️</span> Audit Trail
-                </button>
+            <!-- Center Horizontal Navigation Menu -->
+            <nav class="header-nav">
+                <ul class="nav-menu-list">
+                    <li class="nav-menu-item">
+                        <button class="nav-link-btn active" data-nav="dashboard" id="topnav-home">
+                            Home
+                        </button>
+                    </li>
+                    <!-- Applications with Dropdown Hoverboard -->
+                    <li class="nav-menu-item" id="nav-item-applications">
+                        <button class="nav-link-btn" data-nav="applications" id="topnav-apps" aria-haspopup="true" aria-expanded="false">
+                            Applications
+                            <svg class="nav-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <!-- 5. Horizontal Dropdown Hoverboard -->
+                        <div class="dropdown-hoverboard" id="apps-hoverboard" role="menu">
+                            <div class="hoverboard-grid">
+                                <!-- Left Column (3 entries) -->
+                                <div class="hoverboard-col">
+                                    <a href="#new-application" class="hoverboard-link" id="hlink-new-app" role="menuitem">
+                                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+                                        <span>New Application</span>
+                                    </a>
+                                    <a href="#track-application" class="hoverboard-link" id="hlink-track-app" role="menuitem">
+                                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+                                        <span>Track Application</span>
+                                    </a>
+                                    <a href="#application-history" class="hoverboard-link" id="hlink-app-history" role="menuitem">
+                                        <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><polyline points="3 3 3 8 8 8"/><polyline points="12 7 12 12 15 15"/></svg>
+                                        <span>Application History</span>
+                                    </a>
+                                </div>
+                                <!-- Divider -->
+                                <div class="hoverboard-divider"></div>
+                                <!-- Right Column (3 entries) -->
+                                <div class="hoverboard-col">
+                                    <a href="#document-submission" class="hoverboard-link" id="hlink-doc-sub" role="menuitem">
+                                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                                        <span>Document Submission</span>
+                                    </a>
+                                    <a href="#verification-status" class="hoverboard-link" id="hlink-verif-status" role="menuitem">
+                                        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                        <span>Verification Status</span>
+                                    </a>
+                                    <a href="#correspondence" class="hoverboard-link" id="hlink-corresp" role="menuitem">
+                                        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                        <span>Correspondence</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-menu-item">
+                        <button class="nav-link-btn" data-nav="institutions" id="topnav-institutions">
+                            Institutions
+                        </button>
+                    </li>
+                    <li class="nav-menu-item">
+                        <button class="nav-link-btn" data-nav="rules" id="topnav-rules">
+                            Regulatory Services
+                        </button>
+                    </li>
+                    <li class="nav-menu-item">
+                        <button class="nav-link-btn" data-nav="reports" id="topnav-reports">
+                            Reports
+                        </button>
+                    </li>
+                    <li class="nav-menu-item">
+                        <button class="nav-link-btn" data-nav="help" id="topnav-help">
+                            Help &amp; Support
+                        </button>
+                    </li>
+                </ul>
             </nav>
 
-            <!-- User Auth Profile & Theme Switcher -->
-            <div class="header-actions">
-                <button class="theme-toggle-btn" id="theme-toggle" title="Toggle Light/Dark Theme">
-                    <span id="theme-icon">☀️</span>
+            <!-- Right Controls -->
+            <div class="header-controls">
+                <!-- Search Button -->
+                <button class="icon-btn" id="btn-header-search" title="Global Application Search">
+                    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                 </button>
-                
-                <div class="user-profile-badge" id="user-badge">
-                    <div class="user-avatar" id="user-avatar-initials">DS</div>
-                    <div class="user-meta">
-                        <span class="user-name" id="user-name-display">Dr. Ananya Sharma</span>
-                        <span class="user-role-tag" id="user-role-display">Reviewer</span>
+                <!-- Notifications Button with Indicator -->
+                <button class="icon-btn" id="btn-header-notifs" title="Statutory Notifications">
+                    <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                    <span class="notif-indicator"></span>
+                </button>
+                <!-- Appearance Settings Button -->
+                <button class="icon-btn" id="btn-header-appearance" title="Display &amp; Appearance Settings">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                </button>
+                <!-- Administrator Profile -->
+                <div class="admin-profile-pill" id="btn-admin-profile" title="Administrator Credentials">
+                    <div class="admin-avatar" id="header-avatar-initials">SK</div>
+                    <div class="admin-info">
+                        <span class="admin-name" id="header-user-name">Shanmukh</span>
+                        <span class="admin-role" id="header-user-role">Scrutiny Admin</span>
                     </div>
-                    <button class="logout-btn" id="btn-logout" title="Log Out">⎋</button>
+                    <svg class="profile-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Main App Container -->
-    <main class="main-content">
-        <!-- Toast Notification Area -->
+    <!-- ==========================================================================
+       MAIN APP SHELL: Left Vertical Rail + Main Viewport
+       ========================================================================== -->
+    <div class="app-layout-shell">
+        <!-- Toast Feedback Notification Container -->
         <div id="toast-container" class="toast-container"></div>
 
-        <!-- ================= VIEW 1: DASHBOARD ================= -->
-        <section id="view-dashboard" class="app-view active">
-            <div class="view-header">
-                <div>
-                    <h2 class="view-title">Scrutiny Intelligence Dashboard</h2>
-                    <p class="view-subtitle">Live regulatory verification metrics, active deficiency alerts, and processing queues</p>
-                </div>
-                <div class="view-actions">
-                    <button class="btn btn-outline" id="btn-refresh-dashboard">🔄 Refresh</button>
-                    <button class="btn btn-primary" id="btn-quick-new-app">+ New Application</button>
-                </div>
-            </div>
-
-            <!-- KPI Metric Cards Grid -->
-            <div class="kpi-grid">
-                <div class="kpi-card" id="kpi-total-apps">
-                    <div class="kpi-header">
-                        <span class="kpi-title">Total Applications</span>
-                        <span class="kpi-icon">📁</span>
-                    </div>
-                    <div class="kpi-value" id="stat-total-apps">0</div>
-                    <span class="kpi-trend neutral">Active institutional dossiers</span>
-                </div>
-
-                <div class="kpi-card highlight-warning" id="kpi-in-scrutiny">
-                    <div class="kpi-header">
-                        <span class="kpi-title">Awaiting Scrutiny</span>
-                        <span class="kpi-icon">⏳</span>
-                    </div>
-                    <div class="kpi-value" id="stat-pending-scrutiny">0</div>
-                    <span class="kpi-trend warning">Submitted for verification</span>
-                </div>
-
-                <div class="kpi-card highlight-danger" id="kpi-critical-findings">
-                    <div class="kpi-header">
-                        <span class="kpi-title">Critical Findings</span>
-                        <span class="kpi-icon">⚠️</span>
-                    </div>
-                    <div class="kpi-value" id="stat-critical-findings">0</div>
-                    <span class="kpi-trend danger">Deficiencies requiring notice</span>
-                </div>
-
-                <div class="kpi-card highlight-success" id="kpi-approved-apps">
-                    <div class="kpi-header">
-                        <span class="kpi-title">Approved Approvals</span>
-                        <span class="kpi-icon">✅</span>
-                    </div>
-                    <div class="kpi-value" id="stat-approved-apps">0</div>
-                    <span class="kpi-trend success">Completed cycle</span>
-                </div>
-            </div>
-
-            <!-- Dashboard Analytics Two-Column -->
-            <div class="dashboard-grid">
-                <!-- Severity Breakdown -->
-                <div class="panel">
-                    <div class="panel-header">
-                        <h3 class="panel-title">Findings by Severity</h3>
-                        <span class="tag tag-sm tag-info">Validation Engine</span>
-                    </div>
-                    <div class="severity-bars" id="severity-distribution">
-                        <div class="sev-row">
-                            <span class="sev-label"><span class="dot dot-danger"></span> Critical</span>
-                            <div class="progress-bar-bg"><div class="progress-bar-fill fill-danger" id="bar-crit" style="width: 0%"></div></div>
-                            <span class="sev-count" id="count-crit">0</span>
-                        </div>
-                        <div class="sev-row">
-                            <span class="sev-label"><span class="dot dot-warning"></span> Major</span>
-                            <div class="progress-bar-bg"><div class="progress-bar-fill fill-warning" id="bar-maj" style="width: 0%"></div></div>
-                            <span class="sev-count" id="count-maj">0</span>
-                        </div>
-                        <div class="sev-row">
-                            <span class="sev-label"><span class="dot dot-info"></span> Minor</span>
-                            <div class="progress-bar-bg"><div class="progress-bar-fill fill-info" id="bar-min" style="width: 0%"></div></div>
-                            <span class="sev-count" id="count-min">0</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recent Activity Feed -->
-                <div class="panel">
-                    <div class="panel-header">
-                        <h3 class="panel-title">System Audit Activity</h3>
-                        <button class="btn btn-xs btn-outline" id="btn-view-all-audit">View Log</button>
-                    </div>
-                    <div class="activity-feed" id="dashboard-recent-activity">
-                        <div class="loading-spinner">Loading activity stream...</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= VIEW 2: APPLICATIONS LIST ================= -->
-        <section id="view-applications" class="app-view">
-            <div class="view-header">
-                <div>
-                    <h2 class="view-title">Institutional Applications</h2>
-                    <p class="view-subtitle">Search, filter, and scrutinize regulatory approval dossiers</p>
-                </div>
-                <div class="view-actions">
-                    <button class="btn btn-primary" id="btn-open-create-app-modal">+ New Application</button>
-                </div>
-            </div>
-
-            <!-- Filters Bar -->
-            <div class="filter-bar">
-                <div class="search-input-wrap">
-                    <span class="search-icon">🔍</span>
-                    <input type="text" id="app-search-input" placeholder="Search by Institution, PID, Application #..." class="search-input">
-                </div>
-                
-                <div class="filter-group">
-                    <select id="filter-app-category" class="select-input">
-                        <option value="">All Categories</option>
-                        <option value="EXTENSION_OF_APPROVAL">Extension of Approval (EoA)</option>
-                        <option value="NEW_INSTITUTION">New Institution Setup</option>
-                        <option value="INCREASE_INTAKE">Increase in Intake</option>
-                        <option value="NEW_COURSE">New Course Addition</option>
-                        <option value="CLOSURE">Closure of Program</option>
-                    </select>
-
-                    <select id="filter-app-status" class="select-input">
-                        <option value="">All Statuses</option>
-                        <option value="DRAFT">Draft</option>
-                        <option value="SUBMITTED">Submitted</option>
-                        <option value="IN_SCRUTINY">In Scrutiny</option>
-                        <option value="DEFICIENCY_ISSUED">Deficiency Issued</option>
-                        <option value="APPROVED">Approved</option>
-                        <option value="REJECTED">Rejected</option>
-                    </select>
-
-                    <button class="btn btn-outline" id="btn-apply-filters">Filter</button>
-                    <button class="btn btn-outline" id="btn-reset-filters">Reset</button>
-                </div>
-            </div>
-
-            <!-- Applications Table -->
-            <div class="table-container">
-                <table class="data-table" id="applications-table">
-                    <thead>
-                        <tr>
-                            <th>Application #</th>
-                            <th>Institution Name</th>
-                            <th>Permanent ID (PID)</th>
-                            <th>Category</th>
-                            <th>Academic Year</th>
-                            <th>Status</th>
-                            <th>Submitted Date</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="applications-tbody">
-                        <tr><td colspan="8" class="text-center">Loading applications...</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- ================= VIEW 3: SCRUTINY WORKSPACE (APPLICATION DETAIL) ================= -->
-        <section id="view-scrutiny" class="app-view">
-            <!-- Back to Applications Bar -->
-            <div class="scrutiny-top-bar">
-                <button class="btn btn-outline btn-sm" id="btn-back-to-apps">← Back to Applications</button>
-                <div class="export-actions">
-                    <span class="export-label">Download Dossier:</span>
-                    <button class="btn btn-sm btn-outline" id="btn-export-html">📄 HTML Report</button>
-                    <button class="btn btn-sm btn-outline" id="btn-export-json">💾 JSON</button>
-                    <button class="btn btn-sm btn-outline" id="btn-export-csv">📊 CSV</button>
-                </div>
-            </div>
-
-            <!-- Application Banner Card -->
-            <div class="app-detail-banner" id="app-detail-banner">
-                <div class="banner-main">
-                    <div class="banner-header-row">
-                        <h2 class="app-inst-title" id="detail-inst-name">APEX INSTITUTE OF TECHNOLOGY</h2>
-                        <span class="status-pill status-in_scrutiny" id="detail-app-status">IN_SCRUTINY</span>
-                    </div>
-                    <div class="banner-meta-grid">
-                        <div class="meta-cell">
-                            <span class="meta-label">Application Number</span>
-                            <span class="meta-val" id="detail-app-num">APP-2026-0001</span>
-                        </div>
-                        <div class="meta-cell">
-                            <span class="meta-label">Permanent Institute ID (PID)</span>
-                            <span class="meta-val" id="detail-inst-code">AICTE-1-10928374</span>
-                        </div>
-                        <div class="meta-cell">
-                            <span class="meta-label">Approval Category</span>
-                            <span class="meta-val" id="detail-app-category">EXTENSION_OF_APPROVAL</span>
-                        </div>
-                        <div class="meta-cell">
-                            <span class="meta-label">Academic Cycle</span>
-                            <span class="meta-val" id="detail-app-year">2026-2027</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Reviewer Status Action Box -->
-                <div class="reviewer-status-box">
-                    <span class="box-title">Scrutiny Verdict Decision</span>
-                    <select id="select-status-transition" class="select-input select-status">
-                        <option value="IN_SCRUTINY">In Scrutiny</option>
-                        <option value="DEFICIENCY_ISSUED">Deficiency Notice</option>
-                        <option value="APPROVED">Grant Approval</option>
-                        <option value="REJECTED">Reject Application</option>
-                    </select>
-                    <button class="btn btn-sm btn-primary btn-block" id="btn-update-app-status">Update Status</button>
-                </div>
-            </div>
-
-            <!-- Scrutiny Workspace Tabs -->
-            <div class="tab-nav">
-                <button class="tab-btn active" data-tab="tab-findings" id="tab-btn-findings">
-                    Validation Findings & Discrepancies <span class="badge-count" id="badge-findings-count">0</span>
-                </button>
-                <button class="tab-btn" data-tab="tab-documents" id="tab-btn-documents">
-                    Document Dossier & Evidence <span class="badge-count" id="badge-docs-count">0</span>
-                </button>
-                <button class="tab-btn" data-tab="tab-verifications" id="tab-btn-verifications">
-                    Registry Verification (Adapters)
-                </button>
-            </div>
-
-            <!-- TAB 1: VALIDATION FINDINGS -->
-            <div class="tab-content active" id="tab-findings">
-                <div class="validation-action-banner">
-                    <div>
-                        <h3 class="banner-title">Deterministic Compliance Engine</h3>
-                        <p class="banner-desc">Evaluates mandatory document completeness, expired statutory clearances, cross-document discrepancies, and tampering heuristics.</p>
-                    </div>
-                    <button class="btn btn-primary btn-glow" id="btn-trigger-validation">
-                        ⚡ Run Validation Engine
+        <!-- ==========================================================================
+           4.B. VERTICAL LEFT HOVERBOARD / NAVIGATION RAIL (Dark Green `#042F30`)
+           ========================================================================== -->
+        <aside class="nav-rail-sidebar" id="app-sidebar" aria-label="Administrative Navigation">
+            <ul class="sidebar-nav-list" role="navigation">
+                <!-- 1. Home -->
+                <li class="sidebar-nav-item">
+                    <button class="sidebar-btn active" data-view="dashboard" id="sbtn-home">
+                        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        <span class="sidebar-label">Home</span>
                     </button>
-                </div>
+                </li>
+                <!-- 2. Applications -->
+                <li class="sidebar-nav-item">
+                    <button class="sidebar-btn" data-view="applications" id="sbtn-apps">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                        <span class="sidebar-label">Applications</span>
+                    </button>
+                </li>
+                <!-- 3. Document Verification -->
+                <li class="sidebar-nav-item">
+                    <button class="sidebar-btn" data-view="doc-verification" id="sbtn-doc-verif">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
+                        <span class="sidebar-label">Document Verif.</span>
+                    </button>
+                </li>
+                <!-- 4. Compliance Check -->
+                <li class="sidebar-nav-item">
+                    <button class="sidebar-btn" data-view="compliance-check" id="sbtn-compliance">
+                        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                        <span class="sidebar-label">Compliance</span>
+                    </button>
+                </li>
+                <!-- 5. Institutions -->
+                <li class="sidebar-nav-item">
+                    <button class="sidebar-btn" data-view="institutions" id="sbtn-insts">
+                        <svg viewBox="0 0 24 24"><line x1="3" y1="21" x2="21" y2="21"/><line x1="6" y1="21" x2="6" y2="10"/><line x1="10" y1="21" x2="10" y2="10"/><line x1="14" y1="21" x2="14" y2="10"/><line x1="18" y1="21" x2="18" y2="10"/><polygon points="12 2 2 7 22 7 12 2"/></svg>
+                        <span class="sidebar-label">Institutions</span>
+                    </button>
+                </li>
+                <!-- 6. Reports -->
+                <li class="sidebar-nav-item">
+                    <button class="sidebar-btn" data-view="reports" id="sbtn-reports">
+                        <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                        <span class="sidebar-label">Reports</span>
+                    </button>
+                </li>
+                <!-- 7. Audit Trail -->
+                <li class="sidebar-nav-item">
+                    <button class="sidebar-btn" data-view="audit" id="sbtn-audit">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <span class="sidebar-label">Audit Trail</span>
+                    </button>
+                </li>
+                <!-- 8. User Management -->
+                <li class="sidebar-nav-item">
+                    <button class="sidebar-btn" data-view="users" id="sbtn-users">
+                        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <span class="sidebar-label">User Mgmt.</span>
+                    </button>
+                </li>
+                <!-- 9. Settings -->
+                <li class="sidebar-nav-item">
+                    <button class="sidebar-btn" data-view="settings" id="sbtn-settings">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                        <span class="sidebar-label">Settings</span>
+                    </button>
+                </li>
+            </ul>
 
-                <!-- Findings Container -->
-                <div id="findings-list-container" class="findings-container">
-                    <div class="loading-spinner">Loading validation findings...</div>
-                </div>
+            <!-- Sidebar Watermark & Tagline -->
+            <div class="sidebar-footer">
+                <svg class="sidebar-watermark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    <path d="m9 12 2 2 4-4"/>
+                </svg>
+                <span class="sidebar-tagline">AICTE Regulatory Scrutiny Portal<br>Govt. of India</span>
             </div>
+        </aside>
 
-            <!-- TAB 2: DOCUMENT DOSSIER -->
-            <div class="tab-content" id="tab-documents">
-                <!-- Document Upload Section -->
-                <div class="upload-dossier-card">
-                    <h3 class="card-title">Upload Statutory Regulatory Document</h3>
-                    <form id="form-upload-doc" class="upload-form">
-                        <div class="form-row">
-                            <div class="form-group flex-1">
+        <!-- ==========================================================================
+           MAIN CONTENT AREA
+           ========================================================================== -->
+        <main class="main-viewport">
+            
+            <!-- ================= VIEW 1: MASTER GOVERNMENT DASHBOARD ================= -->
+            <section id="view-dashboard" class="app-view active">
+                
+                <!-- 6.A. WELCOME / HERO SECTION (~220-240px) -->
+                <div class="hero-welcome-surface">
+                    <div class="hero-welcome-left">
+                        <h1 class="hero-greeting-heading">Welcome back, Shanmukh</h1>
+                        <p class="hero-subheading">Monitor applications, validate documents and review regulatory compliance.</p>
+                        <div class="hero-cycle-badge">
+                            AICTE Approval Process 2026–2027 • Regulatory Scrutiny Active
+                        </div>
+                    </div>
+
+                    <!-- Subtle Architectural Line Illustration (Indian Public Colonnade / Dome) -->
+                    <div class="hero-architecture-center" aria-hidden="true">
+                        <svg class="architecture-svg" viewBox="0 0 400 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Classical Dome -->
+                            <path d="M200 15 C175 15 160 38 160 55 L240 55 C240 38 225 15 200 15 Z" stroke="#0F6B6F" stroke-width="1.2" opacity="0.35"/>
+                            <path d="M200 8 L200 15" stroke="#0FAEC1" stroke-width="1.5" opacity="0.4"/>
+                            <!-- Entablature / Pediment -->
+                            <rect x="140" y="55" width="120" height="8" fill="#F4FCFC" stroke="#0F6B6F" stroke-width="1.2" opacity="0.4"/>
+                            <polygon points="200 35 130 55 270 55" fill="none" stroke="#0FAEC1" stroke-width="1" opacity="0.3"/>
+                            <!-- Main Colonnade Upper Beam -->
+                            <rect x="40" y="63" width="320" height="7" fill="#F4FCFC" stroke="#0F6B6F" stroke-width="1.2" opacity="0.35"/>
+                            <!-- Symmetric Classical Columns -->
+                            <line x1="60" y1="70" x2="60" y2="135" stroke="#0F6B6F" stroke-width="2.5" opacity="0.25"/>
+                            <line x1="85" y1="70" x2="85" y2="135" stroke="#0F6B6F" stroke-width="2.5" opacity="0.25"/>
+                            <line x1="110" y1="70" x2="110" y2="135" stroke="#0F6B6F" stroke-width="2.5" opacity="0.25"/>
+                            <line x1="135" y1="70" x2="135" y2="135" stroke="#0F6B6F" stroke-width="2.5" opacity="0.25"/>
+                            <line x1="160" y1="70" x2="160" y2="135" stroke="#0F6B6F" stroke-width="2.5" opacity="0.25"/>
+                            <line x1="185" y1="70" x2="185" y2="135" stroke="#0FAEC1" stroke-width="2.5" opacity="0.3"/>
+                            <line x1="215" y1="70" x2="215" y2="135" stroke="#0FAEC1" stroke-width="2.5" opacity="0.3"/>
+                            <line x1="240" y1="70" x2="240" y2="135" stroke="#0F6B6F" stroke-width="2.5" opacity="0.25"/>
+                            <line x1="265" y1="70" x2="265" y2="135" stroke="#0F6B6F" stroke-width="2.5" opacity="0.25"/>
+                            <line x1="290" y1="70" x2="290" y2="135" stroke="#0F6B6F" stroke-width="2.5" opacity="0.25"/>
+                            <line x1="315" y1="70" x2="315" y2="135" stroke="#0F6B6F" stroke-width="2.5" opacity="0.25"/>
+                            <line x1="340" y1="70" x2="340" y2="135" stroke="#0F6B6F" stroke-width="2.5" opacity="0.25"/>
+                            <!-- Stylobate / Base Steps -->
+                            <rect x="30" y="135" width="340" height="5" stroke="#0F6B6F" stroke-width="1.2" opacity="0.35"/>
+                            <rect x="20" y="140" width="360" height="5" stroke="#0F6B6F" stroke-width="1.2" opacity="0.35"/>
+                            <rect x="10" y="145" width="380" height="6" stroke="#0FAEC1" stroke-width="1" opacity="0.3"/>
+                        </svg>
+                    </div>
+
+                    <!-- Right Institutional Mission Quote -->
+                    <div class="hero-quote-right">
+                        <span class="quote-label">Institutional Mandate</span>
+                        <p class="quote-text">“Ensuring high quality, transparency &amp; credibility in technical education across India.”</p>
+                    </div>
+                </div>
+
+                <!-- 6.B. DATE AND QUICK-ACTION STRIP -->
+                <div class="date-action-strip">
+                    <div class="calendar-strip-section">
+                        <div class="calendar-month-nav">
+                            <span class="month-title">October 2026</span>
+                        </div>
+                        <div class="calendar-days-row">
+                            <div class="cal-day-cell">
+                                <span class="cal-day-name">Sun</span>
+                                <span class="cal-day-num">18</span>
+                            </div>
+                            <div class="cal-day-cell">
+                                <span class="cal-day-name">Mon</span>
+                                <span class="cal-day-num">19</span>
+                            </div>
+                            <div class="cal-day-cell">
+                                <span class="cal-day-name">Tue</span>
+                                <span class="cal-day-num">20</span>
+                            </div>
+                            <div class="cal-day-cell active">
+                                <span class="cal-day-name">Wed</span>
+                                <span class="cal-day-num">21</span>
+                            </div>
+                            <div class="cal-day-cell">
+                                <span class="cal-day-name">Thu</span>
+                                <span class="cal-day-num">22</span>
+                            </div>
+                            <div class="cal-day-cell">
+                                <span class="cal-day-name">Fri</span>
+                                <span class="cal-day-num">23</span>
+                            </div>
+                            <div class="cal-day-cell">
+                                <span class="cal-day-name">Sat</span>
+                                <span class="cal-day-num">24</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions Buttons -->
+                    <div class="strip-actions-area">
+                        <button class="btn-primary-action" id="btn-strip-new-app">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            <span>New Application</span>
+                        </button>
+                        <button class="btn-secondary-action" id="btn-strip-upload-docs">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                            <span>Upload Documents</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 6.C. KPI / SUMMARY SECTION (4 compact metrics) -->
+                <div class="kpi-summary-row">
+                    <!-- 1. Total Applications -->
+                    <div class="kpi-tile">
+                        <div class="kpi-top">
+                            <span class="kpi-label">Total Applications</span>
+                            <div class="kpi-icon-wrap">
+                                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                            </div>
+                        </div>
+                        <div class="kpi-bottom">
+                            <span class="kpi-numeric" id="gov-kpi-total">4</span>
+                            <span class="kpi-meta-badge">Active dossiers</span>
+                        </div>
+                    </div>
+
+                    <!-- 2. Under Review -->
+                    <div class="kpi-tile">
+                        <div class="kpi-top">
+                            <span class="kpi-label">Under Review</span>
+                            <div class="kpi-icon-wrap">
+                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            </div>
+                        </div>
+                        <div class="kpi-bottom">
+                            <span class="kpi-numeric" id="gov-kpi-review">2</span>
+                            <span class="kpi-meta-badge">In scrutiny</span>
+                        </div>
+                    </div>
+
+                    <!-- 3. Verified & Compliant -->
+                    <div class="kpi-tile">
+                        <div class="kpi-top">
+                            <span class="kpi-label">Verified &amp; Compliant</span>
+                            <div class="kpi-icon-wrap">
+                                <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            </div>
+                        </div>
+                        <div class="kpi-bottom">
+                            <span class="kpi-numeric" id="gov-kpi-compliant">1</span>
+                            <span class="kpi-meta-badge">Passed all rules</span>
+                        </div>
+                    </div>
+
+                    <!-- 4. Compliance Issues -->
+                    <div class="kpi-tile">
+                        <div class="kpi-top">
+                            <span class="kpi-label">Compliance Issues</span>
+                            <div class="kpi-icon-wrap">
+                                <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                            </div>
+                        </div>
+                        <div class="kpi-bottom">
+                            <span class="kpi-numeric" id="gov-kpi-issues">3</span>
+                            <span class="kpi-meta-badge alert">Deficiencies</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. DISTINCTIVE LOWER DASHBOARD LAYOUT (Asymmetric ~62% / 38%) -->
+                <div class="lower-dashboard-grid">
+                    
+                    <!-- Left Main Section (~62%) -->
+                    <div style="display: flex; flex-direction: column; gap: var(--space-24);">
+                        
+                        <!-- Panel A: Application Overview Line Chart -->
+                        <div class="editorial-card">
+                            <div class="card-header-row">
+                                <h3 class="card-header-title">
+                                    <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                                    <span>Application Scrutiny Volume</span>
+                                </h3>
+                                <div style="display: flex; gap: var(--space-8); align-items: center;">
+                                    <select class="select-clean" id="chart-range-picker">
+                                        <option value="2026-27">Academic Cycle 2026–27</option>
+                                        <option value="30d">Last 30 Days</option>
+                                        <option value="90d">Previous Quarter</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Restrained Line Chart Component in Official Palette -->
+                            <div class="chart-container-clean">
+                                <svg class="chart-svg" viewBox="0 0 700 220" preserveAspectRatio="none">
+                                    <!-- Gridlines -->
+                                    <line x1="40" y1="30" x2="680" y2="30" class="chart-grid-line"/>
+                                    <line x1="40" y1="80" x2="680" y2="80" class="chart-grid-line"/>
+                                    <line x1="40" y1="130" x2="680" y2="130" class="chart-grid-line"/>
+                                    <line x1="40" y1="180" x2="680" y2="180" class="chart-grid-line"/>
+
+                                    <!-- Y-Axis Labels -->
+                                    <text x="15" y="34" class="chart-axis-text">150</text>
+                                    <text x="15" y="84" class="chart-axis-text">100</text>
+                                    <text x="22" y="134" class="chart-axis-text">50</text>
+                                    <text x="28" y="184" class="chart-axis-text">0</text>
+
+                                    <!-- X-Axis Labels -->
+                                    <text x="60" y="205" class="chart-axis-text">May 2026</text>
+                                    <text x="180" y="205" class="chart-axis-text">Jun 2026</text>
+                                    <text x="300" y="205" class="chart-axis-text">Jul 2026</text>
+                                    <text x="420" y="205" class="chart-axis-text">Aug 2026</text>
+                                    <text x="540" y="205" class="chart-axis-text">Sep 2026</text>
+                                    <text x="640" y="205" class="chart-axis-text">Oct 2026</text>
+
+                                    <!-- Multi-Series Lines in Official Palette -->
+                                    <!-- Series 1: Submitted (#0FAEC1) -->
+                                    <path d="M 60 170 C 120 150, 180 120, 240 100 C 300 80, 360 60, 420 50 C 480 40, 540 65, 660 38" class="chart-line-submitted"/>
+                                    <!-- Series 2: Reviewed (#0F6B6F) -->
+                                    <path d="M 60 180 C 120 170, 180 140, 240 120 C 300 105, 360 85, 420 75 C 480 65, 540 70, 660 55" class="chart-line-reviewed"/>
+                                    <!-- Series 3: Verified (#86D0CF) -->
+                                    <path d="M 60 180 C 120 175, 180 160, 240 140 C 300 125, 360 110, 420 100 C 480 90, 540 85, 660 70" class="chart-line-verified"/>
+                                </svg>
+                            </div>
+
+                            <!-- Legend -->
+                            <div class="chart-legend">
+                                <div class="legend-item">
+                                    <span class="legend-color" style="background-color: var(--color-havasupai);"></span>
+                                    <span>Submitted Applications</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-color" style="background-color: var(--color-bath-green);"></span>
+                                    <span>Scrutinized Dossiers</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-color" style="background-color: var(--color-aqua-splash);"></span>
+                                    <span>Verified &amp; Compliant</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel B: Horizontal Application Processing Flow -->
+                        <div class="editorial-card">
+                            <div class="card-header-row">
+                                <h3 class="card-header-title">
+                                    <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                                    <span>Institutional Approval Pipeline</span>
+                                </h3>
+                                <span class="badge-clean badge-scrutiny">Standard Cycle</span>
+                            </div>
+
+                            <!-- Single Horizontal Process Line -->
+                            <div class="flow-progress-strip">
+                                <!-- Step 1: Submitted -->
+                                <div class="flow-step-node">
+                                    <div class="flow-node-circle completed">
+                                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                                    </div>
+                                    <span class="flow-step-label">Submitted</span>
+                                    <span class="flow-step-count">4 Records</span>
+                                </div>
+
+                                <div class="flow-arrow-connector">➔</div>
+
+                                <!-- Step 2: Document Validation -->
+                                <div class="flow-step-node">
+                                    <div class="flow-node-circle completed">
+                                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="m9 15 2 2 4-4"/></svg>
+                                    </div>
+                                    <span class="flow-step-label">Doc Validation</span>
+                                    <span class="flow-step-count">4 Dossiers</span>
+                                </div>
+
+                                <div class="flow-arrow-connector">➔</div>
+
+                                <!-- Step 3: Compliance Check -->
+                                <div class="flow-step-node">
+                                    <div class="flow-node-circle completed">
+                                        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                                    </div>
+                                    <span class="flow-step-label">Compliance</span>
+                                    <span class="flow-step-count">3 Scrutinized</span>
+                                </div>
+
+                                <div class="flow-arrow-connector">➔</div>
+
+                                <!-- Step 4: Verification -->
+                                <div class="flow-step-node">
+                                    <div class="flow-node-circle">
+                                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                                    </div>
+                                    <span class="flow-step-label">Verification</span>
+                                    <span class="flow-step-count">2 In Registry</span>
+                                </div>
+
+                                <div class="flow-arrow-connector">➔</div>
+
+                                <!-- Step 5: Review & Decision -->
+                                <div class="flow-step-node">
+                                    <div class="flow-node-circle">
+                                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="12 8 8 12 12 16 12 8"/></svg>
+                                    </div>
+                                    <span class="flow-step-label">Decision</span>
+                                    <span class="flow-step-count">1 Approved</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right Section (~38%) -->
+                    <div style="display: flex; flex-direction: column; gap: var(--space-24);">
+                        
+                        <!-- Panel C: Needs Attention Panel -->
+                        <div class="editorial-card">
+                            <div class="card-header-row">
+                                <h3 class="card-header-title">
+                                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                                    <span>Needs Attention</span>
+                                </h3>
+                                <span class="badge-clean badge-deficiency">Priority Queue</span>
+                            </div>
+
+                            <div class="needs-attention-list">
+                                <!-- Item 1: Expired Certificate -->
+                                <div class="attention-row">
+                                    <div class="attention-left">
+                                        <div class="attention-icon-wrap alert">
+                                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                        </div>
+                                        <div class="attention-text-col">
+                                            <span class="attention-title">Expired Fire Safety NOC</span>
+                                            <span class="attention-desc">Zenith College • APP-2026-0002</span>
+                                        </div>
+                                    </div>
+                                    <button class="attention-btn btn-open-scrutiny-direct" data-id="APP-2026-0002">Scrutinize</button>
+                                </div>
+
+                                <!-- Item 2: Missing Building Completion -->
+                                <div class="attention-row">
+                                    <div class="attention-left">
+                                        <div class="attention-icon-wrap alert">
+                                            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="12" y1="9" x2="12.01" y2="9"/></svg>
+                                        </div>
+                                        <div class="attention-text-col">
+                                            <span class="attention-title">Missing Building Completion</span>
+                                            <span class="attention-desc">Zenith College • APP-2026-0002</span>
+                                        </div>
+                                    </div>
+                                    <button class="attention-btn btn-open-scrutiny-direct" data-id="APP-2026-0002">Inspect</button>
+                                </div>
+
+                                <!-- Item 3: Name Mismatch -->
+                                <div class="attention-row">
+                                    <div class="attention-left">
+                                        <div class="attention-icon-wrap">
+                                            <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+                                        </div>
+                                        <div class="attention-text-col">
+                                            <span class="attention-title">Institution Name Discrepancy</span>
+                                            <span class="attention-desc">Apex Society • APP-2026-0003</span>
+                                        </div>
+                                    </div>
+                                    <button class="attention-btn btn-open-scrutiny-direct" data-id="APP-2026-0003">Review</button>
+                                </div>
+
+                                <!-- Item 4: Registry Verification -->
+                                <div class="attention-row">
+                                    <div class="attention-left">
+                                        <div class="attention-icon-wrap">
+                                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                                        </div>
+                                        <div class="attention-text-col">
+                                            <span class="attention-title">Simulated Registry Match</span>
+                                            <span class="attention-desc">Apex Tech • APP-2026-0001</span>
+                                        </div>
+                                    </div>
+                                    <button class="attention-btn btn-open-scrutiny-direct" data-id="APP-2026-0001">View</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel D: Recent Applications Summary Table -->
+                        <div class="editorial-card">
+                            <div class="card-header-row">
+                                <h3 class="card-header-title">
+                                    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+                                    <span>Recent Submissions</span>
+                                </h3>
+                                <button class="attention-btn" id="btn-view-all-apps-link">View All ➔</button>
+                            </div>
+
+                            <table class="compact-app-table" id="dashboard-recent-apps-table">
+                                <thead>
+                                    <tr>
+                                        <th>Application</th>
+                                        <th>Institution</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dashboard-recent-apps-tbody">
+                                    <tr>
+                                        <td><code>APP-2026-0001</code></td>
+                                        <td>Apex Institute</td>
+                                        <td><span class="badge-clean badge-scrutiny">In Scrutiny</span></td>
+                                        <td><button class="attention-btn btn-open-scrutiny-direct" data-id="APP-2026-0001">Scrutinize</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>APP-2026-0002</code></td>
+                                        <td>Zenith College</td>
+                                        <td><span class="badge-clean badge-deficiency">Deficiency</span></td>
+                                        <td><button class="attention-btn btn-open-scrutiny-direct" data-id="APP-2026-0002">Scrutinize</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>APP-2026-0003</code></td>
+                                        <td>Apex Institute</td>
+                                        <td><span class="badge-clean badge-scrutiny">In Scrutiny</span></td>
+                                        <td><button class="attention-btn btn-open-scrutiny-direct" data-id="APP-2026-0003">Scrutinize</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>APP-2026-0004</code></td>
+                                        <td>Royal Academy</td>
+                                        <td><span class="badge-clean badge-draft">Draft</span></td>
+                                        <td><button class="attention-btn btn-open-scrutiny-direct" data-id="APP-2026-0004">Scrutinize</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- ================= VIEW 2: APPLICATIONS LIST ================= -->
+            <section id="view-applications" class="app-view">
+                <div class="card-header-row" style="border: none; padding-bottom: 0;">
+                    <div>
+                        <h2 style="font-family: var(--font-heading); font-size: 26px; color: var(--color-roof-tile);">Institutional Applications Master Register</h2>
+                        <p style="font-size: 13px; color: var(--text-muted); margin-top: 2px;">Search, filter, and scrutinize regulatory approval dossiers</p>
+                    </div>
+                    <div>
+                        <button class="btn-primary-action" id="btn-open-create-app-modal" style="height: 44px; padding: 0 18px;">+ New Application</button>
+                    </div>
+                </div>
+
+                <!-- Filters Strip -->
+                <div class="date-action-strip" style="padding: 12px 16px;">
+                    <div style="flex: 1; display: flex; gap: 12px; align-items: center;">
+                        <input type="text" id="app-search-input" placeholder="Search by Institution, PID, Application #..." class="input-clean" style="flex: 1; height: 40px;">
+                        <select id="filter-app-category" class="select-clean" style="height: 40px;">
+                            <option value="">All Categories</option>
+                            <option value="EXTENSION_OF_APPROVAL">Extension of Approval (EoA)</option>
+                            <option value="NEW_INSTITUTION">New Institution Setup</option>
+                            <option value="INCREASE_INTAKE">Increase in Intake</option>
+                            <option value="NEW_COURSE">New Course Addition</option>
+                            <option value="CLOSURE">Closure of Program</option>
+                        </select>
+                        <select id="filter-app-status" class="select-clean" style="height: 40px;">
+                            <option value="">All Statuses</option>
+                            <option value="DRAFT">Draft</option>
+                            <option value="SUBMITTED">Submitted</option>
+                            <option value="IN_SCRUTINY">In Scrutiny</option>
+                            <option value="DEFICIENCY_ISSUED">Deficiency Issued</option>
+                            <option value="APPROVED">Approved</option>
+                            <option value="REJECTED">Rejected</option>
+                        </select>
+                        <button class="btn-primary-action" id="btn-apply-filters" style="height: 40px; padding: 0 16px;">Filter</button>
+                        <button class="btn-secondary-action" id="btn-reset-filters" style="height: 40px; padding: 0 14px;">Reset</button>
+                    </div>
+                </div>
+
+                <!-- Applications Table -->
+                <div class="editorial-card" style="padding: 0; overflow: hidden;">
+                    <table class="compact-app-table" id="applications-table" style="font-size: 13px;">
+                        <thead style="background-color: var(--color-sparkling-snow);">
+                            <tr>
+                                <th>Application #</th>
+                                <th>Institution Name</th>
+                                <th>Permanent ID (PID)</th>
+                                <th>Category</th>
+                                <th>Academic Year</th>
+                                <th>Status</th>
+                                <th>Submission Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="applications-tbody">
+                            <tr><td colspan="8" class="text-center" style="padding: 24px;">Loading applications...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ================= VIEW 3: SCRUTINY WORKSPACE (APPLICATION DETAIL) ================= -->
+            <section id="view-scrutiny" class="app-view">
+                <!-- Top Nav / Back Row -->
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <button class="btn-secondary-action" id="btn-back-to-apps" style="height: 38px; padding: 0 14px; font-size: 13px;">
+                        ← Back to Applications
+                    </button>
+                    <div style="display: flex; gap: 8px; align-items: center;">
+                        <span style="font-size: 12px; color: var(--text-muted); font-weight: 500;">Export Dossier:</span>
+                        <button class="select-clean" id="btn-export-html">📄 HTML Report</button>
+                        <button class="select-clean" id="btn-export-json">💾 JSON</button>
+                        <button class="select-clean" id="btn-export-csv">📊 CSV</button>
+                    </div>
+                </div>
+
+                <!-- Banner Card -->
+                <div class="scrutiny-banner-surface" id="app-detail-banner">
+                    <div style="flex: 1;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <h2 style="font-family: var(--font-heading); font-size: 24px; color: var(--color-roof-tile);" id="detail-inst-name">APEX INSTITUTE OF TECHNOLOGY</h2>
+                            <span class="badge-clean badge-scrutiny" id="detail-app-status">IN_SCRUTINY</span>
+                        </div>
+                        <div class="banner-meta-grid-clean">
+                            <div class="meta-field-clean">
+                                <label>Application Number</label>
+                                <span id="detail-app-num">APP-2026-0001</span>
+                            </div>
+                            <div class="meta-field-clean">
+                                <label>Permanent ID (PID)</label>
+                                <span id="detail-inst-code">AICTE-1-10928374</span>
+                            </div>
+                            <div class="meta-field-clean">
+                                <label>Approval Category</label>
+                                <span id="detail-app-category">Extension of Approval</span>
+                            </div>
+                            <div class="meta-field-clean">
+                                <label>Academic Year</label>
+                                <span id="detail-app-year">2026–2027</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scrutiny Determination Box -->
+                    <div class="decision-action-box">
+                        <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--color-bath-green);">Official Verdict Decision</span>
+                        <select id="select-status-transition" class="select-clean" style="height: 38px; font-weight: 600;">
+                            <option value="IN_SCRUTINY">In Scrutiny</option>
+                            <option value="DEFICIENCY_ISSUED">Deficiency Notice</option>
+                            <option value="APPROVED">Grant Approval</option>
+                            <option value="REJECTED">Reject Application</option>
+                        </select>
+                        <button class="btn-primary-action" id="btn-update-app-status" style="height: 40px; justify-content: center; font-size: 13px;">Update Status</button>
+                    </div>
+                </div>
+
+                <!-- Scrutiny Workspace Clean Tabs -->
+                <nav class="clean-tabs-nav">
+                    <button class="clean-tab-btn active" data-tab="tab-findings" id="tab-btn-findings">
+                        Validation Findings (<span id="badge-findings-count">0</span>)
+                    </button>
+                    <button class="clean-tab-btn" data-tab="tab-documents" id="tab-btn-documents">
+                        Document Dossier &amp; Evidence (<span id="badge-docs-count">0</span>)
+                    </button>
+                    <button class="clean-tab-btn" data-tab="tab-verifications" id="tab-btn-verifications">
+                        Simulated Registry Verification
+                    </button>
+                </nav>
+
+                <!-- TAB 1: VALIDATION FINDINGS -->
+                <div class="tab-content-panel active" id="tab-findings">
+                    <div class="date-action-strip" style="margin-bottom: var(--space-16);">
+                        <div>
+                            <strong style="color: var(--color-roof-tile);">Deterministic Compliance Validation Engine</strong>
+                            <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Evaluates document completeness, certificate expiry, name &amp; PID discrepancies, duplicate hashes, and chronological coherence.</p>
+                        </div>
+                        <button class="btn-primary-action" id="btn-trigger-validation" style="height: 44px; padding: 0 18px;">
+                            ⚡ Run Validation Engine
+                        </button>
+                    </div>
+
+                    <div id="findings-list-container" style="display: flex; flex-direction: column; gap: var(--space-12);">
+                        <div class="text-center" style="padding: 30px; color: var(--text-muted);">Loading validation findings...</div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: DOCUMENT DOSSIER -->
+                <div class="tab-content-panel" id="tab-documents" style="display: none;">
+                    <div class="editorial-card" style="margin-bottom: var(--space-16);">
+                        <h4 style="font-family: var(--font-heading); font-size: 18px; color: var(--color-roof-tile);">Statutory Document Upload</h4>
+                        <form id="form-upload-doc" style="display: grid; grid-template-columns: 1fr 1.5fr auto; gap: var(--space-12); align-items: end;">
+                            <div class="form-group-clean" style="margin-bottom: 0;">
                                 <label for="upload-doc-type">Document Requirement Type</label>
-                                <select id="upload-doc-type" class="select-input" required>
-                                    <option value="FIRE_SAFETY_NOC">Fire Safety & Emergency NOC</option>
-                                    <option value="BUILDING_COMPLETION_CERT">Building Completion & Occupancy Certificate</option>
+                                <select id="upload-doc-type" class="select-clean" style="height: 42px;" required>
+                                    <option value="FIRE_SAFETY_NOC">Fire Safety &amp; Emergency NOC</option>
+                                    <option value="BUILDING_COMPLETION_CERT">Building Completion &amp; Occupancy Certificate</option>
                                     <option value="PREVIOUS_APPROVAL_LETTER">AICTE Previous Approval Letter (EoA)</option>
                                     <option value="LAND_TITLE_DEED">Land Title Deed / Registered Lease</option>
                                     <option value="LAND_USE_CERTIFICATE">Land Use Certificate (LUC / CLU)</option>
@@ -327,138 +833,133 @@
                                     <option value="FINANCIAL_AUDIT_REPORT">Audited Financial Statements</option>
                                 </select>
                             </div>
-
-                            <div class="form-group flex-2">
-                                <label for="upload-file-input">Select Document (PDF, Scanned PDF, PNG, JPG, TXT)</label>
-                                <input type="file" id="upload-file-input" class="file-input" accept=".pdf,.png,.jpg,.jpeg,.txt" required>
+                            <div class="form-group-clean" style="margin-bottom: 0;">
+                                <label for="upload-file-input">Select File (PDF, Scanned PDF, PNG, JPG, TXT)</label>
+                                <input type="file" id="upload-file-input" class="input-clean" style="height: 42px; padding: 8px 12px;" accept=".pdf,.png,.jpg,.jpeg,.txt" required>
                             </div>
+                            <button type="submit" class="btn-primary-action" id="btn-submit-upload" style="height: 42px; padding: 0 18px;">
+                                Ingest &amp; Verify
+                            </button>
+                        </form>
+                    </div>
 
-                            <div class="form-group flex-auto">
-                                <label>&nbsp;</label>
-                                <button type="submit" class="btn btn-primary" id="btn-submit-upload">Upload & Ingest</button>
-                            </div>
-                        </div>
-                    </form>
+                    <div class="editorial-card" style="padding: 0; overflow: hidden;">
+                        <table class="compact-app-table" id="docs-table">
+                            <thead style="background-color: var(--color-sparkling-snow);">
+                                <tr>
+                                    <th>Document Type</th>
+                                    <th>Original Filename</th>
+                                    <th>SHA-256 Hash</th>
+                                    <th>Mode</th>
+                                    <th>Pages</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="docs-tbody">
+                                <tr><td colspan="7" class="text-center" style="padding: 24px;">No documents uploaded yet.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
-                <!-- Document Table -->
-                <div class="table-container">
-                    <table class="data-table" id="docs-table">
-                        <thead>
+                <!-- TAB 3: REGISTRY VERIFICATION -->
+                <div class="tab-content-panel" id="tab-verifications" style="display: none;">
+                    <div style="background-color: rgba(15, 174, 193, 0.08); border: 1px solid var(--color-havasupai); border-radius: var(--radius-sm); padding: 14px 18px; margin-bottom: var(--space-16); font-size: 13px; color: var(--color-roof-tile);">
+                        <strong>Institutional Transparency Disclosure (SIH 2026):</strong> This adapter layer connects to simulated external statutory registries (AICTE Approval Portal, State Fire NOC Portal). All responses are explicitly badged as simulated.
+                    </div>
+                    <div id="verification-results-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-16);">
+                        <div class="text-center" style="padding: 30px; color: var(--text-muted);">Loading registry verification history...</div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- ================= VIEW 4: COMPLIANCE RULES ================= -->
+            <section id="view-rules" class="app-view">
+                <div class="card-header-row" style="border: none; padding-bottom: 0;">
+                    <div>
+                        <h2 style="font-family: var(--font-heading); font-size: 26px; color: var(--color-roof-tile);">AICTE Regulatory Compliance Rules Registry</h2>
+                        <p style="font-size: 13px; color: var(--text-muted); margin-top: 2px;">Configure, enable, and version statutory compliance rules</p>
+                    </div>
+                </div>
+
+                <div class="editorial-card" style="padding: 0; overflow: hidden;">
+                    <table class="compact-app-table" id="rules-table">
+                        <thead style="background-color: var(--color-sparkling-snow);">
                             <tr>
-                                <th>Document Requirement</th>
-                                <th>Filename</th>
-                                <th>SHA-256 Hash</th>
-                                <th>Mode</th>
-                                <th>Pages</th>
+                                <th>Rule Code</th>
+                                <th>Version</th>
+                                <th>Rule Title &amp; Description</th>
+                                <th>Category</th>
+                                <th>Severity</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody id="docs-tbody">
-                            <tr><td colspan="7" class="text-center">No documents uploaded yet.</td></tr>
+                        <tbody id="rules-tbody">
+                            <tr><td colspan="7" class="text-center" style="padding: 24px;">Loading rules...</td></tr>
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </section>
 
-            <!-- TAB 3: REGISTRY VERIFICATION -->
-            <div class="tab-content" id="tab-verifications">
-                <div class="verification-disclaimer">
-                    <span class="info-icon">ℹ️</span>
+            <!-- ================= VIEW 5: AUDIT TRAIL ================= -->
+            <section id="view-audit" class="app-view">
+                <div class="card-header-row" style="border: none; padding-bottom: 0;">
                     <div>
-                        <strong>Transparency Notice (SIH 2026):</strong>
-                        This adapter layer connects to simulated external statutory registries (e.g. AICTE Approval Portal, State Fire NOC Registry). All outcomes are explicitly badged as simulated. Real deployments connect to authenticated government gateways.
+                        <h2 style="font-family: var(--font-heading); font-size: 26px; color: var(--color-roof-tile);">Immutable Statutory Audit Trail</h2>
+                        <p style="font-size: 13px; color: var(--text-muted); margin-top: 2px;">Chronological and verifiable log of all document uploads, validation runs, and reviewer actions</p>
                     </div>
+                    <button class="btn-secondary-action" id="btn-refresh-audit" style="height: 38px; padding: 0 14px; font-size: 13px;">
+                        🔄 Refresh Log
+                    </button>
                 </div>
 
-                <div class="verification-cards-grid" id="verification-results-container">
-                    <div class="loading-spinner">Loading verification history...</div>
+                <div class="editorial-card" style="padding: 0; overflow: hidden;">
+                    <table class="compact-app-table" id="audit-table">
+                        <thead style="background-color: var(--color-sparkling-snow);">
+                            <tr>
+                                <th>Timestamp (UTC)</th>
+                                <th>Action</th>
+                                <th>User</th>
+                                <th>Resource</th>
+                                <th>Resource ID</th>
+                                <th>IP Address</th>
+                                <th>Audit Details</th>
+                            </tr>
+                        </thead>
+                        <tbody id="audit-tbody">
+                            <tr><td colspan="7" class="text-center" style="padding: 24px;">Loading audit events...</td></tr>
+                        </tbody>
+                    </table>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- ================= VIEW 4: COMPLIANCE RULES ================= -->
-        <section id="view-rules" class="app-view">
-            <div class="view-header">
-                <div>
-                    <h2 class="view-title">Configurable Compliance Rules Registry</h2>
-                    <p class="view-subtitle">Enable, disable, and configure regulatory validation rules across approval categories</p>
-                </div>
-            </div>
+        </main>
+    </div>
 
-            <div class="table-container">
-                <table class="data-table" id="rules-table">
-                    <thead>
-                        <tr>
-                            <th>Rule Code</th>
-                            <th>Version</th>
-                            <th>Title & Description</th>
-                            <th>Category</th>
-                            <th>Severity</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="rules-tbody">
-                        <tr><td colspan="7" class="text-center">Loading rules...</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- ================= VIEW 5: AUDIT TRAIL ================= -->
-        <section id="view-audit" class="app-view">
-            <div class="view-header">
-                <div>
-                    <h2 class="view-title">Immutable Audit Trail Explorer</h2>
-                    <p class="view-subtitle">Complete chronological record of all document uploads, validation runs, and reviewer actions</p>
-                </div>
-                <div class="view-actions">
-                    <button class="btn btn-outline" id="btn-refresh-audit">🔄 Refresh</button>
-                </div>
-            </div>
-
-            <div class="table-container">
-                <table class="data-table" id="audit-table">
-                    <thead>
-                        <tr>
-                            <th>Timestamp (UTC)</th>
-                            <th>Action</th>
-                            <th>User</th>
-                            <th>Resource Type</th>
-                            <th>Resource ID</th>
-                            <th>IP Address</th>
-                            <th>Audit Details</th>
-                        </tr>
-                    </thead>
-                    <tbody id="audit-tbody">
-                        <tr><td colspan="7" class="text-center">Loading audit events...</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-    </main>
-
-    <!-- ================= MODALS ================= -->
+    <!-- ==========================================================================
+       MODALS: Precision Administrative Windows
+       ========================================================================== -->
 
     <!-- Modal: New Application -->
-    <div class="modal-backdrop" id="modal-new-app">
-        <div class="modal-box">
-            <div class="modal-header">
-                <h3 class="modal-title">Create New Regulatory Application</h3>
-                <button class="modal-close" id="btn-close-new-app-modal">&times;</button>
+    <div class="modal-scrim" id="modal-new-app">
+        <div class="modal-surface">
+            <div class="modal-top">
+                <h3 class="modal-title-clean">Initiate New Regulatory Application</h3>
+                <button class="modal-close-x" id="btn-close-new-app-modal">&times;</button>
             </div>
-            <form id="form-create-app" class="modal-body">
-                <div class="form-group">
-                    <label for="new-app-inst">Select Institution *</label>
-                    <select id="new-app-inst" class="select-input" required>
+            <form id="form-create-app" class="modal-body-clean">
+                <div class="form-group-clean">
+                    <label for="new-app-inst">Select Higher Education Institution *</label>
+                    <select id="new-app-inst" class="input-clean" required>
                         <option value="">Loading institutions...</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="new-app-category">Approval Category *</label>
-                    <select id="new-app-category" class="select-input" required>
+                <div class="form-group-clean">
+                    <label for="new-app-category">Regulatory Approval Category *</label>
+                    <select id="new-app-category" class="input-clean" required>
                         <option value="EXTENSION_OF_APPROVAL">Extension of Approval (EoA)</option>
                         <option value="NEW_INSTITUTION">New Institution Setup</option>
                         <option value="INCREASE_INTAKE">Increase in Intake</option>
@@ -466,91 +967,88 @@
                         <option value="CLOSURE">Closure of Program</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="new-app-year">Academic Year *</label>
-                    <input type="text" id="new-app-year" class="text-input" value="2026-2027" required>
+                <div class="form-group-clean">
+                    <label for="new-app-year">Academic Session Cycle *</label>
+                    <input type="text" id="new-app-year" class="input-clean" value="2026-2027" required>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline" id="btn-cancel-new-app">Cancel</button>
-                    <button type="submit" class="btn btn-primary" id="btn-submit-create-app">Create Application</button>
+                <div style="display: flex; justify-content: flex-end; gap: var(--space-8); margin-top: var(--space-20);">
+                    <button type="button" class="btn-secondary-action" id="btn-cancel-new-app" style="height: 40px; padding: 0 16px;">Cancel</button>
+                    <button type="submit" class="btn-primary-action" id="btn-submit-create-app" style="height: 40px; padding: 0 18px;">Create Dossier</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Modal: Document Extraction Inspector & Field Override -->
-    <div class="modal-backdrop" id="modal-extraction-inspector">
-        <div class="modal-box modal-lg">
-            <div class="modal-header">
+    <!-- Modal: Document Extraction Inspector & Reviewer Override -->
+    <div class="modal-scrim" id="modal-extraction-inspector">
+        <div class="modal-surface modal-large">
+            <div class="modal-top">
                 <div>
-                    <h3 class="modal-title" id="inspector-doc-title">Document Extraction Inspector</h3>
-                    <span class="modal-subtitle" id="inspector-doc-meta">MIME: application/pdf | SHA-256: ...</span>
+                    <h3 class="modal-title-clean" id="inspector-doc-title">Document Extraction Inspector</h3>
+                    <span style="font-size: 11px; color: var(--text-muted); font-family: var(--font-mono);" id="inspector-doc-meta">MIME: application/pdf</span>
                 </div>
-                <button class="modal-close" id="btn-close-inspector">&times;</button>
+                <button class="modal-close-x" id="btn-close-inspector">&times;</button>
             </div>
-            <div class="modal-body">
-                <div class="inspector-grid">
-                    <!-- Left: Extracted Structured Fields -->
-                    <div class="inspector-fields-col">
-                        <div class="fields-header">
-                            <h4>Extracted Structured Entities</h4>
-                            <span class="tag tag-sm tag-info">AI & Pattern Parser</span>
-                        </div>
-                        <div id="inspector-fields-list" class="fields-list">
-                            <div class="loading-spinner">Loading fields...</div>
-                        </div>
+            <div class="modal-body-clean" style="display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--space-20);">
+                <!-- Left: Extracted Structured Fields -->
+                <div>
+                    <h4 style="font-family: var(--font-ui); font-size: 14px; font-weight: 600; color: var(--color-roof-tile); margin-bottom: var(--space-8);">
+                        Extracted Structured Entities (PyMuPDF / OCR)
+                    </h4>
+                    <div id="inspector-fields-list" style="display: flex; flex-direction: column; gap: var(--space-8); max-height: 400px; overflow-y: auto;">
+                        <div class="text-center" style="padding: 20px; color: var(--text-muted);">Loading fields...</div>
                     </div>
+                </div>
 
-                    <!-- Right: Field Override Tool -->
-                    <div class="inspector-override-col">
-                        <h4>Reviewer Manual Correction</h4>
-                        <p class="override-desc">If OCR or entity extraction misread a field, authorized reviewers can correct it directly.</p>
-                        
-                        <form id="form-field-override">
-                            <div class="form-group">
-                                <label for="override-field-name">Target Field</label>
-                                <select id="override-field-name" class="select-input" required>
-                                    <option value="institution_name">institution_name</option>
-                                    <option value="institution_id">institution_id (PID)</option>
-                                    <option value="certificate_number">certificate_number</option>
-                                    <option value="issue_date">issue_date (YYYY-MM-DD)</option>
-                                    <option value="expiry_date">expiry_date (YYYY-MM-DD)</option>
-                                    <option value="issuing_authority">issuing_authority</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="override-field-val">Corrected Value *</label>
-                                <input type="text" id="override-field-val" class="text-input" placeholder="e.g. 2027-03-31 or APEX INSTITUTE" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="override-notes">Reviewer Reason / Rationale</label>
-                                <textarea id="override-notes" class="textarea-input" placeholder="Justification for override..." rows="2"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">Save Field Correction</button>
-                        </form>
-                    </div>
+                <!-- Right: Reviewer Manual Correction -->
+                <div style="background-color: var(--color-sparkling-snow); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: var(--space-16);">
+                    <h4 style="font-family: var(--font-ui); font-size: 14px; font-weight: 600; color: var(--color-roof-tile);">Reviewer Manual Override</h4>
+                    <p style="font-size: 11px; color: var(--text-muted); margin: 4px 0 var(--space-12);">If OCR or entity recognition misread a field, authorized officers can correct it with audit logging.</p>
+                    
+                    <form id="form-field-override">
+                        <div class="form-group-clean">
+                            <label for="override-field-name">Target Entity</label>
+                            <select id="override-field-name" class="input-clean" required>
+                                <option value="institution_name">institution_name</option>
+                                <option value="institution_id">institution_id (PID)</option>
+                                <option value="certificate_number">certificate_number</option>
+                                <option value="issue_date">issue_date (YYYY-MM-DD)</option>
+                                <option value="expiry_date">expiry_date (YYYY-MM-DD)</option>
+                                <option value="issuing_authority">issuing_authority</option>
+                            </select>
+                        </div>
+                        <div class="form-group-clean">
+                            <label for="override-field-val">Corrected Value *</label>
+                            <input type="text" id="override-field-val" class="input-clean" placeholder="e.g. 2027-03-31 or APEX INSTITUTE" required>
+                        </div>
+                        <div class="form-group-clean">
+                            <label for="override-notes">Reviewer Reason</label>
+                            <textarea id="override-notes" class="input-clean" rows="2" placeholder="Justification for override..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary-action" style="width: 100%; height: 40px; justify-content: center;">Save Correction</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal: Finding Review Action -->
-    <div class="modal-backdrop" id="modal-finding-review">
-        <div class="modal-box">
-            <div class="modal-header">
-                <h3 class="modal-title">Review Regulatory Finding</h3>
-                <button class="modal-close" id="btn-close-review-modal">&times;</button>
+    <!-- Modal: Finding Review Determination -->
+    <div class="modal-scrim" id="modal-finding-review">
+        <div class="modal-surface">
+            <div class="modal-top">
+                <h3 class="modal-title-clean">Record Finding Determination</h3>
+                <button class="modal-close-x" id="btn-close-review-modal">&times;</button>
             </div>
-            <form id="form-review-finding" class="modal-body">
+            <form id="form-review-finding" class="modal-body-clean">
                 <input type="hidden" id="review-finding-id">
-                <div class="finding-preview-box">
-                    <strong id="review-finding-title">Finding Title</strong>
-                    <p id="review-finding-explanation" class="text-sm">Explanation text...</p>
+                <div style="background-color: var(--color-sparkling-snow); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 12px; margin-bottom: var(--space-16);">
+                    <strong id="review-finding-title" style="color: var(--color-roof-tile); font-size: 14px;">Finding Title</strong>
+                    <p id="review-finding-explanation" style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">Explanation text...</p>
                 </div>
 
-                <div class="form-group">
-                    <label for="review-status-select">Review Verdict *</label>
-                    <select id="review-status-select" class="select-input" required>
+                <div class="form-group-clean">
+                    <label for="review-status-select">Officer Determination *</label>
+                    <select id="review-status-select" class="input-clean" required>
                         <option value="CONFIRMED">CONFIRMED — Verified Genuine Defect</option>
                         <option value="DISMISSED">DISMISSED — False Alarm / Acceptable Variation</option>
                         <option value="RESOLVED">RESOLVED — Satisfactory Evidence Provided</option>
@@ -558,61 +1056,105 @@
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <label for="review-notes-input">Reviewer Notes & Regulatory Reason *</label>
-                    <textarea id="review-notes-input" class="textarea-input" rows="3" placeholder="Provide clear justification for this determination..." required></textarea>
+                <div class="form-group-clean">
+                    <label for="review-notes-input">Regulatory Rationale &amp; Audit Notes *</label>
+                    <textarea id="review-notes-input" class="input-clean" rows="3" placeholder="Provide clear justification for this determination..." required></textarea>
                 </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline" id="btn-cancel-review">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Submit Review Determination</button>
+                <div style="display: flex; justify-content: flex-end; gap: var(--space-8); margin-top: var(--space-16);">
+                    <button type="button" class="btn-secondary-action" id="btn-cancel-review" style="height: 40px; padding: 0 16px;">Cancel</button>
+                    <button type="submit" class="btn-primary-action" style="height: 40px; padding: 0 18px;">Record Verdict</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Modal: Login Role Switcher -->
-    <div class="modal-backdrop" id="modal-login">
-        <div class="modal-box">
-            <div class="modal-header">
+    <!-- Modal: Login / Role Switcher -->
+    <div class="modal-scrim" id="modal-login">
+        <div class="modal-surface">
+            <div class="modal-top">
                 <div>
-                    <h3 class="modal-title">Sign In to ReguValidate</h3>
-                    <p class="modal-subtitle">Authorized Scrutiny & Regulatory Access</p>
+                    <h3 class="modal-title-clean">Authorized Officer Sign In</h3>
+                    <span style="font-size: 11px; color: var(--text-muted);">AICTE Regulatory Portal</span>
                 </div>
-                <button class="modal-close" id="btn-close-login">&times;</button>
+                <button class="modal-close-x" id="btn-close-login">&times;</button>
             </div>
-            <div class="modal-body">
-                <div class="role-selector-pills">
-                    <button type="button" class="role-pill" data-user="reviewer" data-pass="Reviewer@123">
+            <div class="modal-body-clean">
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: var(--space-16);">
+                    <button type="button" class="btn-secondary-action role-picker-pill active" data-user="reviewer" data-pass="Reviewer@123" style="height: auto; padding: 8px 4px; flex-direction: column; font-size: 11px;">
                         <strong>Reviewer</strong>
-                        <small>Dr. Ananya Sharma</small>
+                        <span style="font-size: 10px; color: var(--text-muted);">Dr. Sharma</span>
                     </button>
-                    <button type="button" class="role-pill" data-user="admin" data-pass="Admin@123">
+                    <button type="button" class="btn-secondary-action role-picker-pill" data-user="admin" data-pass="Admin@123" style="height: auto; padding: 8px 4px; flex-direction: column; font-size: 11px;">
                         <strong>Administrator</strong>
-                        <small>Rules & System Admin</small>
+                        <span style="font-size: 10px; color: var(--text-muted);">Shanmukh</span>
                     </button>
-                    <button type="button" class="role-pill" data-user="institution" data-pass="Inst@123">
+                    <button type="button" class="btn-secondary-action role-picker-pill" data-user="institution" data-pass="Inst@123" style="height: auto; padding: 8px 4px; flex-direction: column; font-size: 11px;">
                         <strong>Institution</strong>
-                        <small>Apex Tech Nodal Officer</small>
+                        <span style="font-size: 10px; color: var(--text-muted);">Apex Tech</span>
                     </button>
                 </div>
 
                 <form id="form-login">
-                    <div class="form-group">
-                        <label for="login-username">Username</label>
-                        <input type="text" id="login-username" class="text-input" value="reviewer" required>
+                    <div class="form-group-clean">
+                        <label for="login-username">Officer ID / Username</label>
+                        <input type="text" id="login-username" class="input-clean" value="reviewer" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group-clean">
                         <label for="login-password">Password</label>
-                        <input type="password" id="login-password" class="text-input" value="Reviewer@123" required>
+                        <input type="password" id="login-password" class="input-clean" value="Reviewer@123" required>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block" id="btn-submit-login">Sign In</button>
+                    <button type="submit" class="btn-primary-action" id="btn-submit-login" style="width: 100%; height: 42px; justify-content: center; margin-top: 8px;">
+                        Sign In
+                    </button>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- Main Logic Script -->
+    <!-- Modal: Appearance Settings -->
+    <div class="modal-scrim" id="modal-appearance">
+        <div class="modal-surface">
+            <div class="modal-top">
+                <h3 class="modal-title-clean">Display &amp; Appearance Settings</h3>
+                <button class="modal-close-x" id="btn-close-appearance">&times;</button>
+            </div>
+            <div class="modal-body-clean">
+                <div class="form-group-clean">
+                    <label>Interface Theme Mode</label>
+                    <div style="display: flex; gap: 8px; margin-top: 4px;">
+                        <button type="button" class="btn-secondary-action" id="theme-set-light" style="flex: 1; height: 40px; justify-content: center;">
+                            ☀️ Government Light (Default)
+                        </button>
+                        <button type="button" class="btn-secondary-action" id="theme-set-dark" style="flex: 1; height: 40px; justify-content: center;">
+                            🌙 High-Contrast Dark
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group-clean" style="margin-top: var(--space-16);">
+                    <label>Table Density</label>
+                    <select id="setting-table-density" class="input-clean">
+                        <option value="compact">Compact Administrative (Default)</option>
+                        <option value="comfortable">Comfortable Spacious</option>
+                    </select>
+                </div>
+                <div class="form-group-clean">
+                    <label>Sidebar Rail Mode</label>
+                    <select id="setting-sidebar-mode" class="input-clean">
+                        <option value="expanded">Expanded with Labels (Default)</option>
+                        <option value="condensed">Condensed Icon-Only</option>
+                    </select>
+                </div>
+                <div style="display: flex; justify-content: flex-end; margin-top: var(--space-20);">
+                    <button type="button" class="btn-primary-action" id="btn-save-appearance" style="height: 40px; padding: 0 18px;">
+                        Apply Settings
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Script -->
     <script src="app.js"></script>
 </body>
 </html>
