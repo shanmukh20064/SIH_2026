@@ -122,9 +122,13 @@ def on_startup():
     finally:
         db.close()
 
-# Mount frontend directory for SPA static assets (prefer built dist directory if available)
-FRONTEND_DIR = Path(__file__).resolve().parent.parent / "frontend"
-DIST_DIR = FRONTEND_DIR / "dist"
-serve_dir = DIST_DIR if DIST_DIR.exists() else FRONTEND_DIR
-if serve_dir.exists():
-    app.mount("/", StaticFiles(directory=str(serve_dir), html=True), name="frontend")
+# Mount frontend directory for SPA static assets (prefer root dist, then frontend/dist)
+ROOT_DIR = Path(__file__).resolve().parent.parent
+DIST_DIR = ROOT_DIR / "dist"
+if not DIST_DIR.exists():
+    DIST_DIR = ROOT_DIR / "frontend" / "dist"
+if not DIST_DIR.exists():
+    DIST_DIR = ROOT_DIR / "frontend"
+
+if DIST_DIR.exists():
+    app.mount("/", StaticFiles(directory=str(DIST_DIR), html=True), name="frontend")
