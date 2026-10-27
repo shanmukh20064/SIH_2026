@@ -25,6 +25,10 @@ class Settings(BaseSettings):
     # OCR
     TESSERACT_CMD: str = os.getenv("TESSERACT_CMD", "")
     
+    # Supabase Realtime & API (Optional)
+    SUPABASE_URL: str = os.getenv("SUPABASE_URL", "")
+    SUPABASE_ANON_KEY: str = os.getenv("SUPABASE_ANON_KEY", "")
+    
     class Config:
         env_file = ".env"
         extra = "allow"

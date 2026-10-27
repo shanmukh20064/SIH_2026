@@ -210,11 +210,11 @@ def execute_application_validation(
                             "rule_code": rule_dates.rule_code,
                             "rule_version": rule_dates.version,
                             "severity": rule_dates.severity,
-                            "title": f"Chronological Date Inversion in {doc.document_type}",
+                            "title": f"Chronological Date Inversion in {doc.document_type} (Potential anomaly detected — verification required)",
                             "explanation": f"Stated issue date ({issue_f.normalized_value}) occurs after stated expiry date ({expiry_f.normalized_value}).",
                             "evidence_text": f"Issue Date: {issue_f.extracted_value}\nExpiry Date: {expiry_f.extracted_value}",
                             "detection_method": "DETERMINISTIC_RULE",
-                            "recommended_action": "Review document for typographical error or forged dates.",
+                            "recommended_action": "Potential anomaly detected — verification required. Review document for typographical discrepancy or inspect issuing authority records.",
                             "review_status": "FLAGGED"
                         })
                 except Exception:

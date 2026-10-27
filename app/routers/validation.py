@@ -18,15 +18,19 @@ def trigger_application_validation(
     request: Request,
     payload: ValidationExecuteRequest = None,
     db: Session = Depends(get_db),
-    current_user: User = Depends(require_role(["admin", "reviewer"]))
+    current_user: User = Depends(require_role(["admin", "reviewer", "institution"]))
 ):
-    app_obj = db.query(Application).filter(Application.id == application_id).first()
+    app_obj = db.query(Application).filter(
+        (Application.id == application_id) | (Application.application_number == application_id)
+    ).first()
     if not app_obj:
         raise HTTPException(status_code=404, detail="Application not found.")
 
+    actual_app_id = app_obj.id
+
     validation_run = execute_application_validation(
         db=db,
-        application_id=application_id,
+        application_id=actual_app_id,
         user_id=current_user.id
     )
 

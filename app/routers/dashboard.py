@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import func
 from app.database import get_db
 from app.models.application import Application
+from app.models.institution import Institution
 from app.models.document import Document
 from app.models.validation import Finding, ValidationRun
 from app.models.audit import AuditEvent
@@ -18,29 +19,48 @@ def get_dashboard_summary(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
-    total_apps = db.query(Application).count()
-    pending_apps = db.query(Application).filter(Application.status.in_(["SUBMITTED", "IN_SCRUTINY"])).count()
-    deficiency_apps = db.query(Application).filter(Application.status == "DEFICIENCY_ISSUED").count()
-    approved_apps = db.query(Application).filter(Application.status == "APPROVED").count()
-    rejected_apps = db.query(Application).filter(Application.status == "REJECTED").count()
+    app_query = db.query(Application)
+    doc_query = db.query(Document)
+    finding_query = db.query(Finding)
 
-    total_docs = db.query(Document).count()
-    total_findings = db.query(Finding).count()
+    if current_user.role == "institution":
+        inst = None
+        if hasattr(current_user, "institution_id") and current_user.institution_id:
+            inst = db.query(Institution).filter(Institution.id == current_user.institution_id).first()
+        if not inst:
+            inst = db.query(Institution).filter(Institution.institution_code == "AICTE-1-10928374").first() or db.query(Institution).first()
+        
+        if inst:
+            app_query = app_query.filter(Application.institution_id == inst.id)
+            doc_query = doc_query.join(Application).filter(Application.institution_id == inst.id)
+            finding_query = finding_query.join(Application).filter(Application.institution_id == inst.id)
+
+    total_apps = app_query.count()
+    pending_apps = app_query.filter(Application.status.in_(["SUBMITTED", "IN_SCRUTINY"])).count()
+    deficiency_apps = app_query.filter(Application.status == "DEFICIENCY_ISSUED").count()
+    approved_apps = app_query.filter(Application.status == "APPROVED").count()
+    rejected_apps = app_query.filter(Application.status == "REJECTED").count()
+
+    total_docs = doc_query.count()
+    total_findings = finding_query.count()
 
     # Severity distribution
-    sev_counts = db.query(Finding.severity, func.count(Finding.id)).group_by(Finding.severity).all()
+    sev_counts = finding_query.with_entities(Finding.severity, func.count(Finding.id)).group_by(Finding.severity).all()
     sev_dict = {"CRITICAL": 0, "MAJOR": 0, "MINOR": 0, "INFO": 0}
     for s, c in sev_counts:
         sev_dict[s] = c
 
     # Status distribution
-    status_counts = db.query(Finding.review_status, func.count(Finding.id)).group_by(Finding.review_status).all()
+    status_counts = finding_query.with_entities(Finding.review_status, func.count(Finding.id)).group_by(Finding.review_status).all()
     status_dict = {"FLAGGED": 0, "CONFIRMED": 0, "RESOLVED": 0, "DISMISSED": 0, "NEEDS_ADDITIONAL_EVIDENCE": 0}
     for st, c in status_counts:
         status_dict[st] = c
 
     # Recent activity from audit log
-    recent_events = db.query(AuditEvent).order_by(AuditEvent.timestamp.desc()).limit(8).all()
+    audit_query = db.query(AuditEvent)
+    if current_user.role == "institution":
+        audit_query = audit_query.filter((AuditEvent.user_id == current_user.id) | (AuditEvent.username == current_user.username))
+    recent_events = audit_query.order_by(AuditEvent.timestamp.desc()).limit(8).all()
     recent_act = [
         {
             "action": e.action,
@@ -65,3 +85,4 @@ def get_dashboard_summary(
         findings_by_status=status_dict,
         recent_activity=recent_act
     )
+

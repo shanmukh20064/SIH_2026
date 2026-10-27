@@ -35,6 +35,15 @@ def list_applications(
 ):
     query = db.query(Application).join(Institution, Application.institution_id == Institution.id)
 
+    if current_user.role == "institution":
+        inst = None
+        if hasattr(current_user, "institution_id") and current_user.institution_id:
+            inst = db.query(Institution).filter(Institution.id == current_user.institution_id).first()
+        if not inst:
+            inst = db.query(Institution).filter(Institution.institution_code == "AICTE-1-10928374").first() or db.query(Institution).first()
+        if inst:
+            query = query.filter(Application.institution_id == inst.id)
+
     if status_filter:
         query = query.filter(Application.status == status_filter.upper())
     if category_filter:
@@ -98,19 +107,32 @@ def get_application_detail(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
-    app_obj = db.query(Application).filter(Application.id == application_id).first()
+    app_obj = db.query(Application).filter(
+        (Application.id == application_id) | (Application.application_number == application_id)
+    ).first()
     if not app_obj:
         raise HTTPException(status_code=404, detail="Application not found.")
 
+    actual_app_id = app_obj.id
+
+    if current_user.role == "institution":
+        inst = None
+        if hasattr(current_user, "institution_id") and current_user.institution_id:
+            inst = db.query(Institution).filter(Institution.id == current_user.institution_id).first()
+        if not inst:
+            inst = db.query(Institution).filter(Institution.institution_code == "AICTE-1-10928374").first() or db.query(Institution).first()
+        if inst and app_obj.institution_id != inst.id:
+            raise HTTPException(status_code=403, detail="Unauthorized: Institution accounts can only access their own dossiers.")
+
     latest_val = db.query(ValidationRun).filter(
-        ValidationRun.application_id == application_id
+        ValidationRun.application_id == actual_app_id
     ).order_by(ValidationRun.completed_at.desc()).first()
 
     findings = []
     if latest_val:
         findings = db.query(Finding).filter(Finding.validation_run_id == latest_val.id).all()
 
-    verifs = db.query(VerificationAttempt).filter(VerificationAttempt.application_id == application_id).all()
+    verifs = db.query(VerificationAttempt).filter(VerificationAttempt.application_id == actual_app_id).all()
 
     # Construct response
     resp = ApplicationDetailResponse(
@@ -139,7 +161,9 @@ def update_application(
     db: Session = Depends(get_db),
     current_user: User = Depends(require_role(["admin", "reviewer"]))
 ):
-    app_obj = db.query(Application).filter(Application.id == application_id).first()
+    app_obj = db.query(Application).filter(
+        (Application.id == application_id) | (Application.application_number == application_id)
+    ).first()
     if not app_obj:
         raise HTTPException(status_code=404, detail="Application not found.")
 
@@ -182,7 +206,9 @@ def download_application_report(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
-    app_obj = db.query(Application).filter(Application.id == application_id).first()
+    app_obj = db.query(Application).filter(
+        (Application.id == application_id) | (Application.application_number == application_id)
+    ).first()
     if not app_obj:
         raise HTTPException(status_code=404, detail="Application not found.")
 

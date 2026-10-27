@@ -1,3 +1,4 @@
+# Python
 venv/
 __pycache__/
 *.pyc
@@ -6,7 +7,23 @@ __pycache__/
 .pytest_cache/
 .coverage
 htmlcov/
+*.log
+
+# Databases & local state
 *.db-shm
 *.db-wal
 test_compliance.db
+
+# Node / Frontend
+node_modules/
+frontend/node_modules/
+
+# Environment files with secrets
+.env
+.env.local
+frontend/.env
+frontend/.env.local
+
+# System
 .DS_Store
+Thumbs.db

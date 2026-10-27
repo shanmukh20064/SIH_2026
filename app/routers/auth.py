@@ -30,7 +30,7 @@ async def login(
         username = form.get("username", "")
         password = form.get("password", "")
 
-    user = db.query(User).filter(User.username == username).first()
+    user = db.query(User).filter((User.username == username) | (User.email == username)).first()
     if not user or not verify_password(password, user.password_hash):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

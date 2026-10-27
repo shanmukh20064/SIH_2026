@@ -26,7 +26,9 @@ async def upload_document(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
-    app_obj = db.query(Application).filter(Application.id == application_id).first()
+    app_obj = db.query(Application).filter(
+        (Application.id == application_id) | (Application.application_number == application_id)
+    ).first()
     if not app_obj:
         raise HTTPException(status_code=404, detail="Application not found.")
 

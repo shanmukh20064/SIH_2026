@@ -64,6 +64,42 @@ def health_check(db: Session = Depends(get_db)):
         "notes": "System fully operational." if ocr_available else "System operational. Note: Local Tesseract binary not detected; scanned documents will be routed to manual reviewer inspection."
     }
 
+# Open Storage Folder in Windows File Explorer
+@app.get("/api/open-storage", tags=["Storage"])
+def open_storage_folder():
+    import os, platform, subprocess
+    storage_path = str(settings.STORAGE_DIR.resolve())
+    if not os.path.exists(storage_path):
+        os.makedirs(storage_path, exist_ok=True)
+    try:
+        if platform.system() == "Windows":
+            os.startfile(storage_path)
+        else:
+            subprocess.Popen(["xdg-open", storage_path])
+        return {"status": "success", "message": "Storage folder opened in File Explorer", "path": storage_path}
+    except Exception as e:
+        return {"status": "error", "message": str(e), "path": storage_path}
+
+# List Storage Files
+@app.get("/api/storage/files", tags=["Storage"])
+def list_storage_files():
+    import os
+    results = []
+    storage_path = settings.STORAGE_DIR
+    if storage_path.exists():
+        for root, dirs, files in os.walk(storage_path):
+            for f in files:
+                full_p = Path(root) / f
+                rel_p = full_p.relative_to(storage_path)
+                results.append({
+                    "name": f,
+                    "rel_path": str(rel_p).replace("\\", "/"),
+                    "size_bytes": full_p.stat().st_size,
+                    "folder": str(rel_p.parent).replace("\\", "/"),
+                    "modified": full_p.stat().st_mtime
+                })
+    return {"files": results, "total": len(results)}
+
 # Register API Routers
 app.include_router(auth_router)
 app.include_router(institutions_router)
@@ -86,7 +122,9 @@ def on_startup():
     finally:
         db.close()
 
-# Mount frontend directory for SPA static assets
+# Mount frontend directory for SPA static assets (prefer built dist directory if available)
 FRONTEND_DIR = Path(__file__).resolve().parent.parent / "frontend"
-if FRONTEND_DIR.exists():
-    app.mount("/", StaticFiles(directory=str(FRONTEND_DIR), html=True), name="frontend")
+DIST_DIR = FRONTEND_DIR / "dist"
+serve_dir = DIST_DIR if DIST_DIR.exists() else FRONTEND_DIR
+if serve_dir.exists():
+    app.mount("/", StaticFiles(directory=str(serve_dir), html=True), name="frontend")
