@@ -3,7 +3,7 @@
  * Connects React UI to FastAPI backend with automatic JWT token management.
  */
 
-const BASE_URL = ''; // Relative path, proxied via Vite in dev and served directly in prod
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || ''; // Relative path, proxied via Vite in dev and served directly in prod
 
 export const authState = {
   token: localStorage.getItem('aicte_jwt_token') || '',
