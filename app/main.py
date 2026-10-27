@@ -129,5 +129,5 @@ DIST_DIR = ROOT_DIR / "frontend" / "dist"
 if not DIST_DIR.exists():
     DIST_DIR = ROOT_DIR / "frontend"
 
-if DIST_DIR.exists() and not os.getenv("VERCEL"):
+if DIST_DIR.exists():
     app.mount("/", StaticFiles(directory=str(DIST_DIR), html=True), name="frontend")
