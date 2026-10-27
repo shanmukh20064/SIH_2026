@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 from fastapi import FastAPI, Depends, status
 from fastapi.middleware.cors import CORSMiddleware
@@ -122,13 +123,11 @@ def on_startup():
     finally:
         db.close()
 
-# Mount frontend directory for SPA static assets (prefer root dist, then frontend/dist)
+# Mount frontend directory for SPA static assets when running standalone
 ROOT_DIR = Path(__file__).resolve().parent.parent
-DIST_DIR = ROOT_DIR / "dist"
-if not DIST_DIR.exists():
-    DIST_DIR = ROOT_DIR / "frontend" / "dist"
+DIST_DIR = ROOT_DIR / "frontend" / "dist"
 if not DIST_DIR.exists():
     DIST_DIR = ROOT_DIR / "frontend"
 
-if DIST_DIR.exists():
+if DIST_DIR.exists() and not os.getenv("VERCEL"):
     app.mount("/", StaticFiles(directory=str(DIST_DIR), html=True), name="frontend")

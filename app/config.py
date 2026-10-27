@@ -17,8 +17,8 @@ class Settings(BaseSettings):
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24  # 24 hours
     
-    # Storage
-    STORAGE_DIR: Path = BASE_DIR / "storage" / "documents"
+    # Storage (use /tmp on serverless platforms like Vercel)
+    STORAGE_DIR: Path = Path("/tmp/storage/documents") if os.getenv("VERCEL") else BASE_DIR / "storage" / "documents"
     MAX_FILE_SIZE_BYTES: int = 25 * 1024 * 1024  # 25 MB
     ALLOWED_EXTENSIONS: set = {".pdf", ".png", ".jpg", ".jpeg", ".txt"}
     
@@ -36,4 +36,7 @@ class Settings(BaseSettings):
 settings = Settings()
 
 # Ensure storage directory exists
-settings.STORAGE_DIR.mkdir(parents=True, exist_ok=True)
+try:
+    settings.STORAGE_DIR.mkdir(parents=True, exist_ok=True)
+except Exception:
+    pass

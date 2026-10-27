@@ -88,6 +88,7 @@ def save_upload_file(original_filename: str, content: bytes) -> Tuple[str, str, 
             detail="Path traversal attempt detected."
         )
 
+    settings.STORAGE_DIR.mkdir(parents=True, exist_ok=True)
     with open(target_path, "wb") as f:
         f.write(content)
 
