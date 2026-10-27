@@ -1,3 +1,4 @@
+from __future__ import annotations
 import os
 import shutil
 from typing import Dict, Any, List, Optional
@@ -41,7 +42,7 @@ def preprocess_image_for_ocr(image: Image.Image) -> Image.Image:
     sharpened = contrasted.filter(ImageFilter.SHARPEN)
     return sharpened
 
-def run_ocr_on_image(image: Image.Image) -> TupleResult:
+def run_ocr_on_image(image: Image.Image) -> tuple[str, bool, Optional[str]]:
     """Runs OCR on a PIL image if tesseract is available, otherwise returns status."""
     import pytesseract
     if not is_tesseract_available():
