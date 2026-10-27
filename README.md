@@ -58,7 +58,6 @@ SIH_hackthone/
 │   └── documents/                # Physical document files indexed with SHA-256
 │
 ├── tests/                        # Automated unit and integration tests (32 suites)
-├── unused/                       # Archive of debug scripts, proofs, and legacy assets
 ├── .env.example                  # Environment variable template
 ├── supabase_schema_and_seed.sql  # Standalone PostgreSQL schema & seed data SQL
 ├── supabase_setup.sql            # Supabase Realtime publication setup script
