@@ -36,22 +36,11 @@ import Toast from './components/Toast';
 import { isSupabaseConfigured, subscribeToTable, unsubscribeChannel } from './supabase';
 
 import { initialKpiMetrics, recentApplications as initialApplications, currentUser as defaultUser } from './data/mockData';
-import { getApplications, getDashboardSummary, ensureAuth } from './api';
+import { getApplications, getDashboardSummary, ensureAuth, clearAuthSession } from './api';
 
 export default function App() {
-  // User session state - restored from localStorage if valid session exists
-  const [currentUser, setCurrentUser] = useState(() => {
-    try {
-      const savedUser = localStorage.getItem('aicte_user');
-      const token = localStorage.getItem('aicte_jwt_token');
-      if (savedUser && token) {
-        return JSON.parse(savedUser);
-      }
-    } catch (e) {
-      console.warn('Failed to parse saved user:', e);
-    }
-    return null;
-  });
+  // Always display the Login Page when opening the website
+  const [currentUser, setCurrentUser] = useState(null);
 
   // Post-login profile selection state
   const [pendingAuth, setPendingAuth] = useState(null);
@@ -139,6 +128,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    if (!currentUser) return;
     fetchDashboardData();
 
     // Supabase Real-time subscriptions
@@ -166,7 +156,7 @@ export default function App() {
         unsubscribeChannel(auditChannel);
       };
     }
-  }, [fetchDashboardData]);
+  }, [currentUser, fetchDashboardData]);
 
   // Handlers
   const handleCreateAppSuccess = (newApp) => {
@@ -229,13 +219,11 @@ export default function App() {
     setCurrentUser(profile);
     setIsProfileSelectOpen(false);
     setPendingAuth(null);
-    localStorage.setItem('aicte_user', JSON.stringify(profile));
     showToast(`Welcome back, ${profile.name}! Active Workspace: ${profile.role}.`, 'success');
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('aicte_jwt_token');
-    localStorage.removeItem('aicte_user');
+    clearAuthSession();
     setCurrentUser(null);
     setPendingAuth(null);
     setIsProfileSelectOpen(false);

@@ -10,13 +10,35 @@ export const authState = {
   user: JSON.parse(localStorage.getItem('aicte_user') || 'null'),
 };
 
-// Automatic login to ensure valid JWT token when credentials or saved user exist
+export function setAuthSession(token, user) {
+  authState.token = token || '';
+  authState.user = user || null;
+  if (token) {
+    localStorage.setItem('aicte_jwt_token', token);
+  } else {
+    localStorage.removeItem('aicte_jwt_token');
+  }
+  if (user) {
+    localStorage.setItem('aicte_user', JSON.stringify(user));
+  } else {
+    localStorage.removeItem('aicte_user');
+  }
+}
+
+export function clearAuthSession() {
+  authState.token = '';
+  authState.user = null;
+  localStorage.removeItem('aicte_jwt_token');
+  localStorage.removeItem('aicte_user');
+}
+
+// Authenticate to get valid JWT token with user-provided credentials
 export async function ensureAuth(username, password) {
   if (authState.token) {
     return authState.token;
   }
   const u = username || authState.user?.username;
-  const p = password || authState.user?.password || (u === 'admin' ? 'Admin@123' : u === 'institution' ? 'Inst@123' : u === 'reviewer' ? 'Reviewer@123' : null);
+  const p = password || authState.user?.password;
   if (!u || !p) {
     return '';
   }
@@ -33,7 +55,7 @@ export async function ensureAuth(username, password) {
       return data.access_token;
     }
   } catch (err) {
-    console.warn('Backend login fallback:', err);
+    console.warn('Backend login error:', err);
   }
   return '';
 }

@@ -78,7 +78,7 @@ async function runTests() {
             return { heading, hasApply, hasVerify, hasTrack, hasComply, hasSignInBtn };
           })()`);
           console.log('Login Page Check:', loginPageCheck);
-          await captureScreenshot(ws, 'C:\\hackthons\\test_login_page_proof.png');
+          await captureScreenshot(ws, 'C:\\hackthons\\unused\\test_login_page_proof.png');
 
           console.log('\n=== TEST 2: Invalid Credentials Rejection ===');
           await evaluate(ws, `(() => {
@@ -103,7 +103,7 @@ async function runTests() {
             return { hasError: err.length > 0, text: err };
           })()`);
           console.log('Invalid Auth Check:', invalidCheck);
-          await captureScreenshot(ws, 'C:\\hackthons\\test_login_invalid_proof.png');
+          await captureScreenshot(ws, 'C:\\hackthons\\unused\\test_login_invalid_proof.png');
 
           console.log('\n=== TEST 3: Valid Login & Three Predefined Profiles Display ===');
           await evaluate(ws, `(() => {
@@ -131,7 +131,7 @@ async function runTests() {
             return { modalTitle, hasShanmukh, hasRamesh, hasApex };
           })()`);
           console.log('Profiles Check:', profileCheck);
-          await captureScreenshot(ws, 'C:\\hackthons\\test_profile_selection_proof.png');
+          await captureScreenshot(ws, 'C:\\hackthons\\unused\\test_profile_selection_proof.png');
 
           console.log('\n=== TEST 4: RBAC Role Protection in Profile Selector ===');
           // Try clicking unauthorized profile (Dr. Ramesh Kumar) as admin
@@ -146,7 +146,7 @@ async function runTests() {
             return { hasAlert: alertText.includes('Role Authorization Restriction') };
           })()`);
           console.log('RBAC Denial Check:', deniedCheck);
-          await captureScreenshot(ws, 'C:\\hackthons\\test_profile_access_denied_proof.png');
+          await captureScreenshot(ws, 'C:\\hackthons\\unused\\test_profile_access_denied_proof.png');
 
           console.log('\n=== TEST 5: Select Authorized Profile (Shanmukh - Administrator) ===');
           await evaluate(ws, `(() => {
@@ -163,7 +163,7 @@ async function runTests() {
             return { userName, heroName, hasAiBanner, hasKpis };
           })()`);
           console.log('Admin Dashboard Check:', adminDashboardCheck);
-          await captureScreenshot(ws, 'C:\\hackthons\\test_admin_dashboard_proof.png');
+          await captureScreenshot(ws, 'C:\\hackthons\\unused\\test_admin_dashboard_proof.png');
 
           console.log('\n=== TEST 6: Logout back to Login Page ===');
           await evaluate(ws, `(() => {
@@ -177,7 +177,7 @@ async function runTests() {
             return { isBackOnLogin: heading.includes('Building Quality Technical Education') };
           })()`);
           console.log('Logout Check:', logoutCheck);
-          await captureScreenshot(ws, 'C:\\hackthons\\test_logout_proof.png');
+          await captureScreenshot(ws, 'C:\\hackthons\\unused\\test_logout_proof.png');
 
           console.log('\n=== TEST 7: Scrutiny Officer Login (Dr. Ramesh Kumar) ===');
           await evaluate(ws, `(() => {
@@ -210,7 +210,7 @@ async function runTests() {
             return { userName, hasAssigned, hasAnomalies };
           })()`);
           console.log('Officer Dashboard Check:', officerCheck);
-          await captureScreenshot(ws, 'C:\\hackthons\\test_officer_dashboard_proof.png');
+          await captureScreenshot(ws, 'C:\\hackthons\\unused\\test_officer_dashboard_proof.png');
 
           console.log('\n=== TEST 8: Institution Rep Login (Apex Institute Tech) ===');
           // Logout
@@ -251,7 +251,7 @@ async function runTests() {
             return { userName, hasChecklist, hasCode };
           })()`);
           console.log('Institution Dashboard Check:', instCheck);
-          await captureScreenshot(ws, 'C:\\hackthons\\test_institution_dashboard_proof.png');
+          await captureScreenshot(ws, 'C:\\hackthons\\unused\\test_institution_dashboard_proof.png');
 
           console.log('\n>>> ALL 8 INTEGRATION TESTS PASSED CLEANLY! <<<');
           chrome.kill();
