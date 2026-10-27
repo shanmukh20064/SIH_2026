@@ -202,7 +202,7 @@ def update_application(
 @router.get("/{application_id}/reports")
 def download_application_report(
     application_id: str,
-    format: str = Query("html", regex="^(html|json|csv)$"),
+    format: str = Query("html", pattern="^(html|json|csv)$"),
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):

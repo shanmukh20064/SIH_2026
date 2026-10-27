@@ -164,7 +164,7 @@ Ensure your repository contains `frontend/`, `app/`, `api/`, and `vercel.json` a
 ### Step 2: Import into Vercel
 1. Open your Vercel Dashboard: [vercel.com](https://vercel.com).
 2. Click **Add New...** $\rightarrow$ **Project**.
-3. Select your repository (**`SIH_hackthone`**) and click **Import**.
+3. Select your repository (**`SIH_2026`**) and click **Import**.
 
 ### Step 3: Configure Project Settings
 * **Framework Preset**: Select `Vite` (or `Other`).
